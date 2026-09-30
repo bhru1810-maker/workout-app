@@ -1,0 +1,1365 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>אימונים ונהנים</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#ECEFEA; --surface:#F8F9F6; --sunk:#E1E5DF; --ink:#161A18; --muted:#56615B; --faint:#7F8983; --line:#CFD5CE;
+  --a:#2350B5; --a-ink:#FFFFFF; --a-soft:#DCE4F6;
+  --b:#E1A814; --b-ink:#1E1700; --b-soft:#F5E9C4;
+  --f:#39433E; --f-ink:#FFFFFF;
+  --good:#2C7A47; --good-soft:#DCEFE2; --warn:#9C4F08; --warn-soft:#F8E6D2; --bad:#B42318; --bad-soft:#FADFDB;
+  --display:"Karantina","IBM Plex Sans Hebrew",system-ui,sans-serif;
+  --sans:"IBM Plex Sans Hebrew","Heebo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0F1211; --surface:#171B19; --sunk:#1F2522; --ink:#E5E9E6; --muted:#9BA59F; --faint:#77817B; --line:#2B322E;
+    --a:#7C9CF0; --a-ink:#0A1024; --a-soft:#1B2542;
+    --b:#E8B94A; --b-ink:#1E1700; --b-soft:#372D12;
+    --f:#C9D1CC; --f-ink:#111513;
+    --good:#63C184; --good-soft:#15291C; --warn:#F0A55A; --warn-soft:#33230F; --bad:#F2806F; --bad-soft:#3A1813;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0F1211; --surface:#171B19; --sunk:#1F2522; --ink:#E5E9E6; --muted:#9BA59F; --faint:#77817B; --line:#2B322E;
+  --a:#7C9CF0; --a-ink:#0A1024; --a-soft:#1B2542;
+  --b:#E8B94A; --b-ink:#1E1700; --b-soft:#372D12;
+  --f:#C9D1CC; --f-ink:#111513;
+  --good:#63C184; --good-soft:#15291C; --warn:#F0A55A; --warn-soft:#33230F; --bad:#F2806F; --bad-soft:#3A1813;
+}
+/* in-page choice (auto / light / dark) wins over the host theme */
+html:root[data-ui="light"]{color-scheme:light;
+  --bg:#ECEFEA; --surface:#F8F9F6; --sunk:#E1E5DF; --ink:#161A18; --muted:#56615B; --faint:#7F8983; --line:#CFD5CE;
+  --a:#2350B5; --a-ink:#FFFFFF; --a-soft:#DCE4F6;
+  --b:#E1A814; --b-ink:#1E1700; --b-soft:#F5E9C4;
+  --f:#39433E; --f-ink:#FFFFFF;
+  --good:#2C7A47; --good-soft:#DCEFE2; --warn:#9C4F08; --warn-soft:#F8E6D2; --bad:#B42318; --bad-soft:#FADFDB;
+}
+html:root[data-ui="dark"]{color-scheme:dark;
+  --bg:#0F1211; --surface:#171B19; --sunk:#1F2522; --ink:#E5E9E6; --muted:#9BA59F; --faint:#77817B; --line:#2B322E;
+  --a:#7C9CF0; --a-ink:#0A1024; --a-soft:#1B2542;
+  --b:#E8B94A; --b-ink:#1E1700; --b-soft:#372D12;
+  --f:#C9D1CC; --f-ink:#111513;
+  --good:#63C184; --good-soft:#15291C; --warn:#F0A55A; --warn-soft:#33230F; --bad:#F2806F; --bad-soft:#3A1813;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;padding-inline:16px}
+.app{max-width:920px;margin-inline:auto;padding-block:20px 72px}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.15}
+p{margin:0}
+a{color:var(--a)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--a);outline-offset:2px;border-radius:6px}
+bdi{unicode-bidi:isolate}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* header */
+.top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;padding-bottom:14px}
+.brand h1{font-family:var(--display);font-weight:700;font-size:clamp(52px,11vw,76px);line-height:.82;letter-spacing:.5px}
+.brand h1 span{color:var(--a)}
+.brand p{color:var(--muted);margin-top:8px;font-size:14px}
+.top-side{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+.seg{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px}
+.seg button{border:0;background:transparent;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.sync{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+.sync i{width:8px;height:8px;border-radius:50%;background:var(--faint);display:inline-block}
+.sync.on i{background:var(--good)}
+.sync.off i{background:var(--warn)}
+
+/* tabs */
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line);margin-bottom:22px}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;background:none;border:0;padding:12px 12px 10px;font-weight:600;font-size:15px;color:var(--muted);border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.tabs button:hover{color:var(--ink)}
+
+section.tab{display:flex;flex-direction:column;gap:22px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.08em;color:var(--muted)}
+.h2{font-family:var(--display);font-weight:700;font-size:40px;line-height:.95;letter-spacing:.3px}
+.h3{font-size:17px;font-weight:700}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stack{display:flex;flex-direction:column;gap:12px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+
+/* plates */
+.plate{--p:var(--a);--pi:var(--a-ink);flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--p);color:var(--pi);font-family:var(--display);font-weight:700;font-size:23px;line-height:1;box-shadow:inset 0 0 0 4px var(--p),inset 0 0 0 5.5px color-mix(in srgb,var(--pi) 35%,transparent)}
+.plate.B{--p:var(--b);--pi:var(--b-ink)}
+.plate.F{--p:var(--f);--pi:var(--f-ink)}
+.plate.C{--p:var(--good);--pi:#fff}
+.plate.lg{width:64px;height:64px;font-size:34px;box-shadow:inset 0 0 0 6px var(--p),inset 0 0 0 8px color-mix(in srgb,var(--pi) 35%,transparent)}
+.plate.sm{width:30px;height:30px;font-size:17px;box-shadow:none}
+
+/* week strip */
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.wd{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 2px;border-radius:12px;background:var(--surface);border:1px solid var(--line);text-align:center}
+.wd b{font-size:13px;color:var(--muted);font-weight:600}
+.wd .rest{font-size:11.5px;color:var(--faint);line-height:1.25;min-height:30px;display:grid;place-items:center}
+.wd.next{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+
+.daypick{display:flex;gap:8px;flex-wrap:wrap}
+.daypick button{display:inline-flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px 14px 4px 4px;cursor:pointer;font-weight:600}
+.daypick button[aria-pressed="true"]{border-color:var(--ink);background:var(--sunk)}
+.daypick .plate{width:32px;height:32px;font-size:18px;box-shadow:none}
+@media (max-width:620px){.daypick{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}.daypick button{padding:4px;flex:none}.daypick button .lbl{display:none}}
+
+.dayhead{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.dayhead .t{flex:1;min-width:200px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--sunk);color:var(--ink)}
+.tag.next{background:var(--ink);color:var(--bg)}
+.tag.good{background:var(--good-soft);color:var(--good)}
+.tag.warn{background:var(--warn-soft);color:var(--warn)}
+.tag.bad{background:var(--bad-soft);color:var(--bad)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:9px 16px;border-radius:10px;font-weight:600;cursor:pointer;text-decoration:none;font-size:15px}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{border-color:var(--ink)}
+.btn.danger{background:transparent;color:var(--bad);border-color:var(--bad)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.linkbtn{background:none;border:0;padding:0;color:var(--muted);text-decoration:underline;text-underline-offset:3px;cursor:pointer;font-size:13px}
+.linkbtn.bad{color:var(--bad)}
+
+/* exercise lists */
+.block{display:flex;flex-direction:column;gap:0}
+.block-h{display:flex;align-items:baseline;gap:10px;padding-bottom:6px;border-bottom:2px solid var(--ink)}
+.block-h h3{font-family:var(--display);font-size:30px;font-weight:700;line-height:1}
+.block-h span{color:var(--muted);font-size:13px}
+.exlist{list-style:none;margin:0;padding:0}
+.ex{display:grid;grid-template-columns:40px 1fr;gap:4px 10px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ex-no{font-family:var(--mono);font-size:14px;font-weight:600;color:var(--muted);padding-top:2px}
+.ex-no.ss{color:var(--ink)}
+.ex-top{display:flex;justify-content:space-between;align-items:baseline;gap:4px 14px;flex-wrap:wrap}
+.ex-name{font-weight:700;font-size:16px;direction:ltr}
+.rx{font-family:var(--mono);font-weight:600;font-size:15px;white-space:nowrap}
+.ex-cue{color:var(--muted);font-size:14px;margin-top:2px;max-width:62ch}
+.ex-meta{display:flex;gap:6px 16px;flex-wrap:wrap;align-items:center;margin-top:6px;font-size:13px;color:var(--faint)}
+.cues{margin:4px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:2px;color:var(--muted);font-size:14px;max-width:64ch}
+.cues li{position:relative;padding-inline-start:14px}
+.cues li::before{content:"";position:absolute;inset-inline-start:2px;top:.72em;width:5px;height:5px;border-radius:50%;background:var(--faint)}
+.avoid{font-size:13.5px;color:var(--warn);margin-top:4px;max-width:64ch}
+.avoid b{font-weight:700}
+.vid{display:inline-flex;align-items:center;gap:8px;background:var(--a-soft);color:var(--a);font-weight:600;padding:5px 12px 5px 14px;border-radius:999px;text-decoration:none;font-size:13.5px;line-height:1.3}
+.vid:hover{background:var(--a);color:var(--a-ink)}
+.vid em{font-style:normal;font-weight:500;opacity:.75;font-size:12px}
+.vid.alt{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.vid.alt:hover{border-color:var(--ink);background:transparent;color:var(--ink)}
+.play{width:0;height:0;border-top:5px solid transparent;border-bottom:5px solid transparent;border-left:8px solid currentColor;flex:none}
+.minivid{font-size:12.5px;font-weight:600;color:var(--a);text-decoration:none;white-space:nowrap}
+.minivid:hover{text-decoration:underline}
+.bal{display:flex;flex-direction:column;gap:6px}
+.bal-g{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--muted);margin-top:8px}
+.bal-row{display:grid;grid-template-columns:112px 1fr 44px 58px;gap:10px;align-items:center}
+.bal-n{font-size:14px}
+.bal-track{position:relative;height:14px;background:var(--sunk);border-radius:4px;overflow:hidden}
+.bal-band{position:absolute;top:0;bottom:0;background:color-mix(in srgb,var(--good) 22%,transparent);border-inline:1px dashed color-mix(in srgb,var(--good) 70%,transparent)}
+.bal-bar{position:absolute;top:3px;bottom:3px;inset-inline-start:0;border-radius:0 4px 4px 0;background:var(--a)}
+[dir="rtl"] .bal-bar{border-radius:4px 0 0 4px}
+.bal-bar.upper{background:var(--b)}
+.bal-bar.core{background:var(--f)}
+.bal-v{font-family:var(--mono);font-size:13px;text-align:end}
+.bal-row .tag{justify-self:start;font-size:11.5px}
+@media (max-width:520px){.bal-row{grid-template-columns:92px 1fr 38px}.bal-row .tag{display:none}}
+.ssmark{font-size:11.5px;font-weight:600;color:var(--ink);background:var(--sunk);border-radius:6px;padding:1px 7px}
+
+details.fold{border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+details.fold>summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;font-weight:700}
+details.fold>summary::-webkit-details-marker{display:none}
+details.fold>summary::after{content:"+";font-family:var(--mono);font-size:18px;color:var(--muted)}
+details.fold[open]>summary::after{content:"–"}
+details.fold .inner{padding:0 18px 14px}
+details.fold .ex{grid-template-columns:32px 1fr;padding:10px 0}
+details.fold .ex:last-child{border-bottom:0}
+
+ul.clean{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+ul.clean li{position:relative;padding-inline-start:18px;max-width:68ch}
+ul.clean li::before{content:"";position:absolute;inset-inline-start:0;top:.62em;width:7px;height:7px;border-radius:2px;background:var(--ink)}
+ul.clean.a li::before{background:var(--a)}
+ul.clean.good li::before{background:var(--good)}
+ul.clean.warn li::before{background:var(--b)}
+ul.clean.bad li::before{background:var(--bad)}
+ol.steps{margin:0;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:14px}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:10px}
+ol.steps li::before{content:counter(s);font-family:var(--display);font-size:30px;font-weight:700;line-height:.9;color:var(--a)}
+
+/* forms */
+label.f{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600;color:var(--muted)}
+input[type=text],input[type=number],input[type=date],select,textarea{background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:16px;width:100%;min-width:0}
+textarea{min-height:70px;resize:vertical;line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--a);box-shadow:0 0 0 3px color-mix(in srgb,var(--a) 22%,transparent)}
+.fields{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.scale{display:flex;flex-direction:column;gap:6px}
+.scale .lbl{display:flex;justify-content:space-between;gap:8px;font-size:13px;font-weight:600;color:var(--muted)}
+.scale .lbl em{font-style:normal;font-weight:400;color:var(--faint)}
+.pills{display:flex;gap:4px;flex-wrap:wrap}
+.pills input{position:absolute;opacity:0;pointer-events:none}
+.pills label{min-width:30px;height:32px;display:grid;place-items:center;border:1px solid var(--line);border-radius:8px;font-family:var(--mono);font-size:14px;cursor:pointer;background:var(--bg);padding-inline:4px}
+.pills input:checked+label{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pills input:focus-visible+label{outline:2px solid var(--a);outline-offset:2px}
+.check{display:flex;gap:10px;align-items:center;font-weight:600}
+.check input{width:18px;height:18px;accent-color:var(--bad)}
+.alert{border-radius:10px;padding:10px 14px;font-size:14px;background:var(--bad-soft);color:var(--bad);font-weight:500}
+.note{border-radius:10px;padding:10px 14px;font-size:14px;background:var(--sunk);color:var(--ink)}
+
+.logex{display:grid;grid-template-columns:1fr;gap:8px;padding:14px 0;border-bottom:1px solid var(--line)}
+.logex .hd{display:flex;justify-content:space-between;gap:6px 12px;flex-wrap:wrap;align-items:baseline}
+.prev{font-size:12.5px;color:var(--faint);font-family:var(--mono);direction:ltr;unicode-bidi:isolate}
+.sets{display:flex;flex-wrap:wrap;gap:8px}
+.set{display:flex;align-items:center;gap:4px;background:var(--sunk);border-radius:10px;padding:5px 6px}
+.set span{font-family:var(--mono);font-size:12px;color:var(--muted);width:16px;text-align:center}
+.set input{width:62px;padding:6px 6px;font-size:15px;text-align:center;font-family:var(--mono)}
+.set i{font-style:normal;color:var(--faint);font-size:12px}
+
+.save-row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.savebar{position:sticky;bottom:calc(10px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:0 8px 24px -12px rgb(0 0 0 / .35)}
+
+/* per-exercise options, goal, insights, timer */
+.exopts{display:flex;gap:8px;flex-wrap:wrap}
+.mini-seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.mini-seg input{position:absolute;opacity:0;pointer-events:none}
+.mini-seg label{padding:4px 10px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer;background:var(--bg)}
+.mini-seg input:checked+label{background:var(--ink);color:var(--bg)}
+.mini-seg input:focus-visible+label{outline:2px solid var(--a);outline-offset:-2px}
+.exhint{font-size:12px;color:var(--faint)}
+.goal{font-size:13px;color:var(--good)}
+.goal b{font-family:var(--mono);font-weight:600}
+.insight{border-color:color-mix(in srgb,var(--a) 45%,var(--line))}
+.timer{position:relative;display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 0 10px}
+.timer .t-lbl{font-size:13px;font-weight:700;color:var(--muted)}
+.timer b{font-size:40px;font-weight:700;min-width:100px;direction:ltr;letter-spacing:1px;font-family:var(--mono)}
+.timer.run b{color:var(--a)}
+.timer.ring b{color:var(--good);animation:pulse .4s ease-in-out 3}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.t-q{display:flex;gap:6px;flex-wrap:wrap}
+.t-q button{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 16px;font-size:15px;font-weight:600;cursor:pointer;min-width:56px;touch-action:manipulation}
+.t-q button:hover{border-color:var(--ink);background:var(--sunk)}
+.t-q button:active{background:var(--ink);color:var(--bg)}
+.t-bar{position:absolute;bottom:0;inset-inline-start:0;height:3px;width:0;background:var(--a);border-radius:2px}
+.timer .linkbtn{font-size:15px;padding:10px 12px}
+.nextlist{display:flex;flex-direction:column}
+.nx{display:grid;grid-template-columns:1fr auto;gap:0 12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.nx:last-child{border-bottom:0}
+.nx b{font-size:14px;font-weight:600;color:var(--good)}
+.nx span{grid-column:1 / -1;font-size:12.5px;color:var(--muted)}
+/* tables */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:9px 12px;text-align:start;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-size:12px;color:var(--muted);font-weight:600;background:var(--sunk)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+/* history list */
+.hist{display:flex;flex-direction:column}
+.hitem{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.hitem:last-child{border-bottom:0}
+.hitem .d{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.hitem .s{font-size:13.5px;color:var(--muted);overflow-wrap:anywhere}
+.hitem .acts{display:flex;gap:12px}
+
+/* stats + charts */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.stat b{display:block;font-family:var(--display);font-size:44px;line-height:.95;font-weight:700}
+.stat b small{font-family:var(--sans);font-size:14px;font-weight:500;color:var(--muted);margin-inline-start:4px}
+.stat span{font-size:13px;color:var(--muted)}
+.chart{position:relative;direction:ltr}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.ch-grid{stroke:var(--line);stroke-width:1}
+.ch-axis{fill:var(--muted);font-family:var(--mono);font-size:11px}
+.ch-line{fill:none;stroke:var(--a);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.ch-area{fill:var(--a);opacity:.10}
+.ch-dot{fill:var(--a);stroke:var(--surface);stroke-width:2}
+.ch-end{fill:var(--ink);font-family:var(--mono);font-size:12px;font-weight:600}
+.ch-cross{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+.ch-hit{fill:transparent;cursor:crosshair}
+.tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:12px;padding:5px 9px;border-radius:7px;white-space:nowrap;transform:translate(-50%,-120%)}
+.empty{color:var(--faint);font-size:14px;padding:18px 0}
+
+.photos{display:flex;gap:8px;flex-wrap:wrap}
+.ph{position:relative;width:88px;height:116px;border-radius:10px;overflow:hidden;background:var(--sunk);border:1px solid var(--line)}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph button{position:absolute;top:4px;inset-inline-end:4px;width:24px;height:24px;border-radius:50%;border:0;background:rgb(0 0 0 / .6);color:#fff;cursor:pointer;font-size:14px;line-height:1}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.compare figure{margin:0;display:flex;flex-direction:column;gap:6px}
+.compare .imgs{display:flex;gap:6px;overflow-x:auto}
+.compare img{height:220px;width:auto;border-radius:10px;border:1px solid var(--line)}
+.compare figcaption{font-size:13px;color:var(--muted)}
+
+.lists3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:16px}
+.phase{display:flex;flex-direction:column;gap:6px}
+.phase .h2{font-size:44px}
+.prin{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:0 28px}
+.prin article{padding:16px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.prin h3{font-size:16px;font-weight:700}
+.prin p{color:var(--muted);font-size:14.5px;max-width:64ch}
+.foot{color:var(--faint);font-size:13px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;font-weight:600;z-index:20;box-shadow:0 10px 30px -10px rgb(0 0 0 / .5)}
+.duebar{display:flex;justify-content:space-between;gap:10px;align-items:center}
+@media (max-width:520px){
+  .h2{font-size:34px}
+  .panel{padding:14px}
+  .wd{padding:8px 0}
+  .plate.sm{width:26px;height:26px;font-size:15px}
+  .compare img{height:160px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="app" dir="rtl" lang="he">
+  <header class="top">
+    <div class="brand">
+      <h1>אימונים <span>ונהנים</span></h1>
+      <p><bdi>ATG</bdi> · כוח · מסה · מוביליטי · הבראת המעי</p>
+    </div>
+    <div class="top-side">
+      <div class="seg" role="group" aria-label="מצב תצוגה">
+        <button data-ui-set="auto" aria-pressed="true">אוטומטי</button>
+        <button data-ui-set="light" aria-pressed="false">בהיר</button>
+        <button data-ui-set="dark" aria-pressed="false">כהה</button>
+      </div>
+      <span class="sync" id="sync"><i></i><span>מתחבר…</span></span>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="מדורים">
+    <button role="tab" data-tab="program" aria-selected="true">התוכנית</button>
+    <button role="tab" data-tab="log" aria-selected="false">יומן אימון</button>
+    <button role="tab" data-tab="checkin" aria-selected="false">צ׳ק-אין</button>
+    <button role="tab" data-tab="progress" aria-selected="false">התקדמות</button>
+    <button role="tab" data-tab="food" aria-selected="false">תזונה</button>
+    <button role="tab" data-tab="labs" aria-selected="false">בדיקות</button>
+    <button role="tab" data-tab="coach" aria-selected="false">עדכונים</button>
+  </nav>
+
+  <main>
+    <section class="tab" id="tab-program"></section>
+    <section class="tab" id="tab-log" hidden>
+      <div id="log-form" class="stack"></div>
+      <div class="panel stack"><h2 class="h3">אימונים אחרונים</h2><div id="log-hist" class="hist"></div></div>
+    </section>
+    <section class="tab" id="tab-checkin" hidden>
+      <div id="ci-form" class="stack"></div>
+      <div class="stack"><h2 class="h3">היסטוריה</h2><div id="ci-hist"></div></div>
+    </section>
+    <section class="tab" id="tab-progress" hidden></section>
+    <section class="tab" id="tab-food" hidden></section>
+    <section class="tab" id="tab-labs" hidden>
+      <div id="lab-sched" class="stack"></div>
+      <div id="lab-form" class="stack"></div>
+      <div class="stack"><h2 class="h3">תוצאות</h2><div id="lab-hist"></div></div>
+    </section>
+    <section class="tab" id="tab-coach" hidden></section>
+  </main>
+  <div class="toast" id="toast" hidden></div>
+</div>
+
+<script>
+document.documentElement.lang = 'he';
+document.documentElement.dir = 'rtl';
+const DEFAULT_PROGRAM = {"version":4,"updatedAt":"2026-09-27","cycle":"שבועות 1–5 בנייה, שבוע 6 דילואד. אחר כך בודקים את הנתונים ומעדכנים.","week":[{"d":"א׳","s":"A1"},{"d":"ב׳","s":"B1"},{"d":"ג׳","s":"מנוחה פעילה"},{"d":"ד׳","s":"A2"},{"d":"ה׳","s":"B2"},{"d":"ו׳","s":"F"},{"d":"ש׳","s":"מנוחה"}],"rotation":["A1","B1","A2","B2"],"targets":[{"k":"quads","n":"ארבע ראשי","lo":12,"hi":22,"g":"legs"},{"k":"hams","n":"ירך אחורית","lo":10,"hi":18,"g":"legs"},{"k":"glutes","n":"ישבן","lo":10,"hi":20,"g":"legs"},{"k":"hips","n":"מקרבים ומרחיקים","lo":4,"hi":10,"g":"legs"},{"k":"calves","n":"תאומים","lo":6,"hi":12,"g":"legs"},{"k":"tibs","n":"שוק קדמית","lo":4,"hi":10,"g":"legs"},{"k":"chest","n":"חזה","lo":10,"hi":18,"g":"upper"},{"k":"lats","n":"רחב גבי","lo":10,"hi":20,"g":"upper"},{"k":"upper","n":"גב עליון","lo":10,"hi":18,"g":"upper"},{"k":"fdelt","n":"כתף קדמית","lo":6,"hi":14,"g":"upper"},{"k":"sdelt","n":"כתף צדדית","lo":8,"hi":18,"g":"upper"},{"k":"rdelt","n":"כתף אחורית","lo":6,"hi":14,"g":"upper"},{"k":"biceps","n":"יד קדמית","lo":8,"hi":16,"g":"upper"},{"k":"triceps","n":"יד אחורית","lo":8,"hi":16,"g":"upper"},{"k":"core","n":"ליבה","lo":10,"hi":20,"g":"core"},{"k":"grip","n":"אחיזה","lo":3,"hi":8,"g":"core"}],"warmup":{"time":"10–12 דק׳","common":[{"id":"w_back","n":"Backward walk","sr":"4 דק׳","c":["הליכון כבוי או מזחלת, ידיים על המאחזים","צעדים קצרים על כרית כף הרגל, ברך מעט כפופה","צריך להרגיש חום בארבע ראשי ובברכיים"],"x":"לנחות על העקב בצעד לאחור","v":"https://www.youtube.com/watch?v=x19d9ArkhDc"},{"id":"w_tib","n":"Tibialis raise (wall)","sr":"1×20","c":["גב צמוד לקיר, עקבים כ-30 ס״מ מהקיר","מרים את כפות הרגליים הכי גבוה שאפשר","עצירה קצרה למעלה וירידה איטית"],"x":"לכופף ברכיים או לנתק את הישבן מהקיר","v":"https://www.youtube.com/watch?v=t3JPQkBMjuU"},{"id":"w_split","n":"ATG split squat","sr":"1×8 לרגל","c":["במשקל גוף, צעד ארוך, עקב קדמי צמוד לרצפה","ירידה איטית עד שהברך הקדמית עוברת את האצבעות","מותר לאחוז במשהו לאיזון"],"x":"להרים את העקב הקדמי","v":"https://www.youtube.com/shorts/9I06taRrGyI"},{"id":"w_jeff","n":"Jefferson curl","sr":"1×8","c":["עומד על ספסל או מדרגה, 5–10 ק״ג בידיים","סנטר לחזה, מתגלגל חוליה אחרי חוליה עד למטה","3 שניות למטה ו-3 שניות למעלה"],"x":"משקל כבד או תנופה. זה תרגיל מוביליטי","v":"https://www.youtube.com/watch?v=UpSXywh9OW0"},{"id":"w_band","n":"Band pull-apart","sr":"1×15","c":["גומייה ברוחב כתפיים בגובה החזה","ידיים ישרות, מושך לצדדים עד שהגומייה נוגעת בחזה","לסחוט את השכמות יחד"],"x":"להרים כתפיים לאוזניים","v":"https://www.youtube.com/shorts/qi2y-eI_kuI"},{"id":"w_disl","n":"Band dislocates","sr":"1×10","c":["אחיזה רחבה בגומייה או במקל","ידיים ישרות, מעל הראש ועד מאחורי הגב","כל שבוע מצמצמים קצת את האחיזה"],"x":"לכופף מרפקים כדי לעבור","v":"https://www.youtube.com/watch?v=riVxa9By-pM"},{"id":"w_scap","n":"Scap pull-ups","sr":"1×10","c":["תלייה מלאה, ידיים ישרות","מושך את השכמות למטה ומרים את הגוף כמה סנטימטרים","חוזר לתלייה מלאה"],"x":"לכופף את המרפקים","v":"https://www.youtube.com/watch?v=-ZIpSoTRsuE"}],"A":[{"id":"w_rn","n":"Reverse Nordic","sr":"1×8","c":["על הברכיים, גוף ישר מהברך ועד הראש","נשען לאחור לאט בטווח שנוח","ישבן מכווץ כל הזמן"],"x":"להתכופף במותניים","v":"https://www.youtube.com/watch?v=uJSCxJh-tec"},{"id":"w_9090","n":"90/90 hip switches","sr":"1×8 לצד","c":["ישיבה, שתי הברכיים ב-90°","מסובב את שתי הברכיים לצד השני יחד","גו זקוף, בהתחלה ידיים מאחור לעזרה"],"x":"לקרוס עם הגב","v":"https://www.youtube.com/watch?v=HUZimFZJZWU"},{"id":"w_coss","n":"Cossack squat","sr":"1×6 לצד","c":["עמידה רחבה, ירידה לצד אחד","עקב של רגל הירידה על הרצפה, הרגל השנייה ישרה ואצבעות למעלה","חזה זקוף"],"x":"להרים את העקב","v":"https://www.youtube.com/watch?v=JaCbmoDqUc4"}],"B":[{"id":"w_push","n":"Push-ups","sr":"1×10","c":["ידיים מעט רחבות מהכתפיים","גוף ישר, בטן וישבן מכווצים","מרפקים בכ-45° מהגוף, חזה עד הרצפה"],"x":"אגן ששוקע או מרפקים פתוחים ל-90°","v":"https://www.youtube.com/watch?v=WDIpL0pjun0"},{"id":"w_er","n":"Band external rotation","sr":"1×15 לצד","c":["מרפק צמוד לגוף ב-90°","מסובב את היד החוצה לאט","חוזר בשליטה"],"x":"להרחיק את המרפק מהגוף","v":"https://www.youtube.com/watch?v=4HqMXMn3FBk"},{"id":"w_cat","n":"Cat-camel","sr":"1×8","c":["על שש, ידיים מתחת לכתפיים","מקמר את הגב למעלה ואז משקיע למטה","נושם עם התנועה"],"x":"למהר","v":"https://www.youtube.com/watch?v=dRXO0agekxA"},{"id":"w_trot","n":"Quadruped thoracic rotation","sr":"1×8 לצד","c":["על שש, יד אחת מאחורי הראש","מסובב את המרפק לכיוון התקרה","האגן לא זז"],"x":"לסובב מהגב התחתון","v":"https://www.youtube.com/watch?v=3ZZpWdpYbTQ"}]},"cooldown":{"time":"8–10 דק׳","A":[{"id":"c_couch","n":"Couch stretch","sr":"60 שנ׳ לצד","c":["ברך אחורית צמודה לקיר או לספה, השוק לאורך הקיר","רגל קדמית בכריעה","ישבן מכווץ, גו זקוף"],"x":"לקשת את הגב התחתון","v":"https://www.youtube.com/shorts/TML8Vqy-ACQ"},{"id":"c_pigeon","n":"Pigeon stretch","sr":"60 שנ׳ לצד","c":["שוק קדמית לרוחב, רגל אחורית ישרה","אגן ישר לרצפה","נשען קדימה ונושם"],"x":"לקרוס על צד אחד של האגן","v":"https://www.youtube.com/watch?v=n8u6Zm5LiBg"},{"id":"c_pancake","n":"Pancake","sr":"60 שנ׳","c":["פיסוק רחב, ברכיים ואצבעות למעלה","גב ישר, הטיה קדימה מהירכיים","יורד קצת בכל נשיפה"],"x":"לעגל את הגב","v":"https://www.youtube.com/watch?v=CHRUb43S6RM"},{"id":"c_elephant","n":"Elephant walk","sr":"1×10 לצד","c":["ידיים על הרצפה, ברכיים כפופות","מיישר ברך אחת בכל פעם","ראש רפוי"],"x":"לנעול את שתי הברכיים יחד","v":"https://www.youtube.com/watch?v=fnih_6w_JjA"},{"id":"c_calf","n":"Calf wall stretch","sr":"45 שנ׳ לצד","c":["ידיים על הקיר, רגל אחורית ישרה ועקב על הרצפה","אחר כך מכופף את הברך האחורית כדי למתוח את הסוליאוס","אגן קדימה"],"x":"להרים את העקב","v":"https://www.youtube.com/watch?v=mtVqe4CR_60"},{"id":"c_sigh","n":"Physiological sigh","sr":"1–2 דק׳","c":["שתי שאיפות באף: אחת מלאה ועוד אחת קצרה מעליה","נשיפה ארוכה ואיטית מהפה","5–10 פעמים. מוריד דופק ומעביר את הגוף למצב התאוששות"],"x":null,"v":"https://www.youtube.com/watch?v=rBdhqBGqiMc"}],"B":[{"id":"c_hang","n":"Dead hang","sr":"2×30–45 שנ׳","c":["אחיזה ברוחב כתפיים","גוף רפוי, הכתפיים עולות לאוזניים","נושם לאט"],"x":"להחזיק בכוח עם כתפיים משוכות","v":"https://www.youtube.com/watch?v=g0I7Jv3oqKw"},{"id":"c_pec","n":"Doorway pec stretch","sr":"45 שנ׳ לצד","c":["אמה על המשקוף, מרפק בגובה הכתף","צעד קדימה עד מתיחה בחזה","כתף נשארת למטה"],"x":"למשוך עד כאב בקדמת הכתף","v":"https://www.youtube.com/watch?v=M850sCj9LHQ"},{"id":"c_lat","n":"Bench lat stretch","sr":"45 שנ׳","c":["על הברכיים, מרפקים על ספסל","מקל בידיים, כפות ידיים למעלה","ישבן לעקבים וחזה לרצפה"],"x":"לקשת את הגב התחתון","v":"https://www.youtube.com/watch?v=6Fc0u9xPkL8"},{"id":"c_openbook","n":"Thoracic open book","sr":"1×8 לצד","c":["שוכב על הצד, ברכיים כפופות אחת על השנייה","פותח את היד העליונה לצד השני","העיניים עוקבות אחרי היד"],"x":"לתת לברכיים להיפרד","v":"https://www.youtube.com/watch?v=rDviWORCWEw"},{"id":"c_neck","n":"Upper trap stretch","sr":"30 שנ׳ לצד","c":["ישיבה, יד אחת מתחת לישבן","היד השנייה מטה את הראש הצידה בעדינות","הכתף נשארת למטה"],"x":"למשוך חזק","v":"https://www.youtube.com/watch?v=-r0eoFS7_5Q"},{"id":"c_sigh","n":"Physiological sigh","sr":"1–2 דק׳","c":["שתי שאיפות באף: אחת מלאה ועוד אחת קצרה מעליה","נשיפה ארוכה ואיטית מהפה","5–10 פעמים. מוריד דופק ומעביר את הגוף למצב התאוששות"],"x":null,"v":"https://www.youtube.com/watch?v=rBdhqBGqiMc"}],"note":"אחרי המתיחות: סאונה 10–15 דק׳ עם מים וקורט מלח."},"days":[{"id":"A1","type":"A","title":"רגליים · כוח","sub":"ומעט חזה, גב וכתפיים","dur":"~80 דק׳","blocks":[{"t":"כוח מתפרץ","items":[{"id":"p_box","n":"Box jump","sr":"3×3","c":["קופסה בגובה שנוחתים עליו בקלות","תנופת ידיים וקפיצה מקסימלית","נחיתה רכה בכריעה חלקית, ויורדים בצעד ולא בקפיצה"],"x":"קופסה גבוהה מדי ונחיתה בכריעה עמוקה","v":"https://www.youtube.com/watch?v=G-bxQY57mKc","rest":"90 שנ׳","log":"r","bw":true}]},{"t":"סקילים","items":[{"id":"s_nordic","n":"Nordic curl","sr":"3×3–5","c":["עקבים מקובעים, ברכיים על כרית","גוף ישר מהברך ועד הראש, ירידה איטית של 4–5 שניות","בהתחלה: גומייה בחזה או ירידה חלקית, ודחיפה חזרה עם הידיים. בשבועיים הראשונים רק 2 סטים"],"x":"להתכופף במותניים כדי להקל","v":"https://www.youtube.com/shorts/n7jvtdMJJ4w","rest":"2–3 דק׳","log":"r","m":{"hams":1},"bw":true}]},{"t":"כוח","items":[{"id":"squat","n":"Back squat","sr":"4×5","c":["מוט על הטרפזים, רגליים ברוחב כתפיים","נשימה לבטן ונעילה לפני הירידה","ירידה עמוקה בשליטה, ברכיים בכיוון האצבעות, ודחיפה של הרצפה"],"x":"עקבים שמתרוממים או גב תחתון שמתעגל בתחתית","v":"https://www.youtube.com/watch?v=bEv6CCg2BC8","rest":"3 דק׳","log":"wr","m":{"quads":1,"glutes":0.5}},{"id":"rdl","n":"Romanian deadlift","sr":"3×8","c":["ברכיים רכות שנשארות באותה זווית","ירכיים אחורה, המוט צמוד לרגליים","עוצרים כשהירך האחורית נמתחת, בערך באמצע השוק"],"x":"לעגל את הגב כדי להגיע נמוך יותר","v":"https://www.youtube.com/watch?v=_oyxCn2iSjU","rest":"2 דק׳","log":"wr","m":{"hams":1,"glutes":0.5}}]},{"t":"נפח","items":[{"id":"atg_split","n":"ATG split squat","sr":"3×8 לרגל","c":["משקולות בידיים, צעד ארוך","ברך קדמית עוברת את האצבעות, עקב קדמי צמוד לרצפה","בתחתית: ירך אחורית על השוק ומתיחה בכופף הירך האחורי"],"x":"לקצר את הטווח כדי להרים יותר משקל","v":"https://www.youtube.com/shorts/9I06taRrGyI","rest":"2 דק׳","log":"wr","m":{"quads":1,"glutes":0.5},"uni":true,"per":"db"},{"id":"poliquin","n":"Poliquin step-up","sr":"2×15 לרגל","c":["עקב על משטח משופע או על פלטה, מדרגה נמוכה","יורד לאט עם הרגל השנייה עד שהעקב נוגע ברצפה","הברך נוסעת קדימה מעל האצבעות"],"x":"לדחוף עם הרגל שעל הרצפה","v":"https://www.youtube.com/watch?v=WPQnPm-Hl-w","rest":"90 שנ׳","log":"wr","m":{"quads":1,"glutes":0.5},"bw":true,"uni":true},{"id":"tib","n":"Tibialis raise","sr":"3×20","c":["גב לקיר או ישיבה על ספסל, Tib bar או פלטה על כף הרגל","מרים את האצבעות עד הסוף","ירידה איטית ומבוקרת"],"x":"תנופה או חצי טווח","v":"https://www.youtube.com/watch?v=jJoeXumQUNU","rest":"60 שנ׳","log":"wr","m":{"tibs":1},"ss":"1"},{"id":"calf_stand","n":"Standing calf raise","sr":"3×12","c":["כרית כף הרגל על קצה המדרגה","ירידה עד מתיחה מלאה ועצירה של 2 שניות","עלייה עד הסוף על הבהונות"],"x":"קפיצות קצרות בלי טווח","v":"https://www.youtube.com/watch?v=SVtg-1loH4c","rest":"60 שנ׳","log":"wr","ss":"1","m":{"calves":1}}]},{"t":"פלג עליון","items":[{"id":"wpullup","n":"Weighted pull-up","sr":"3×6","c":["מתחיל מתלייה מלאה, אחיזה מעט רחבה מהכתפיים","מושך את המרפקים לצלעות עד שהסנטר מעל המוט","בלי תוספת משקל עד שיש 10 נקיים"],"x":"חצי טווח ובעיטות","v":"https://www.youtube.com/watch?v=M830ntufBqE","rest":"2–3 דק׳","log":"wr","m":{"lats":1,"biceps":0.5},"bw":true},{"id":"dbbench","n":"DB bench press","sr":"3×8–10","c":["שכמות מאחור ולמטה, כפות רגליים על הרצפה","ירידה עמוקה עד מתיחה בחזה, מרפקים בכ-45°","דחיפה למעלה ומעט פנימה"],"x":"להקפיץ את המשקולות מהחזה","v":"https://www.youtube.com/watch?v=xhEhjF5ozuY","rest":"2 דק׳","log":"wr","m":{"chest":1,"fdelt":0.5,"triceps":0.5},"per":"db"},{"id":"lat_raise","n":"Lateral raise","sr":"2×15","c":["נטייה קלה קדימה","מוביל עם המרפקים לצדדים עד גובה הכתף","ירידה איטית"],"x":"משקל כבד ותנופה של הגוף","v":"https://www.youtube.com/shorts/NZsldrqqca8","rest":"60 שנ׳","log":"wr","m":{"sdelt":1},"per":"db"}]},{"t":"בטן","items":[{"id":"hlr","n":"Hanging leg raise","sr":"3×10–12","c":["תלייה עם שכמות פעילות","מגלגל את האגן למעלה, לא רק מרים רגליים","ירידה איטית בלי תנופה. כשזה קל: Toes to bar"],"x":"להתנדנד","v":"https://www.youtube.com/watch?v=vwl68EF9M2Q","rest":"60 שנ׳","log":"r","m":{"core":1},"bw":true}]}]},{"id":"B1","type":"B","title":"פלג עליון · כוח","sub":"ומעט רגליים","dur":"~85 דק׳","blocks":[{"t":"כוח מתפרץ","items":[{"id":"p_mb","n":"Med ball rotational throw","sr":"3×5 לצד","c":["עמידה לצד הקיר, כדור של 4–6 ק״ג","הכוח מתחיל ברגליים ובאגן, הידיים רק מעבירות","זורק חזק ותופס"],"x":"לזרוק רק עם הידיים","v":"https://www.youtube.com/watch?v=o9BC7lgN1bo","rest":"60 שנ׳","log":"wr","m":{"core":1},"uni":true}]},{"t":"סקילים","items":[{"id":"s_mu","n":"Muscle-up progression","sr":"4–5 סטים","c":["שלב 1 (עד 10 מתח ו-15 מקבילים): Chest-to-bar מתפרצים 4×5","שלב 2: Straight bar dips 3×8 ושליליות של muscle-up 3×3","שלב 3: עם גומייה, ואז 5×1–3 נקי"],"x":"לנסות muscle-up מלא לפני שיש בסיס. ככה נפצעים במרפק","v":"https://www.youtube.com/watch?v=-b1TB7edF2E","v2":"https://www.youtube.com/watch?v=6rhowlOcTn0","v2t":"Straight bar dips","rest":"2–3 דק׳","log":"r","m":{"lats":0.5},"bw":true},{"id":"s_lsit","n":"L-sit","sr":"3×10–20 שנ׳","c":["על מקבילים או על שני כיסאות","כתפיים דוחפות למטה, ידיים נעולות","רגליים ישרות קדימה. בהתחלה אפשר ברך אחת או שתיים כפופות"],"x":"כתפיים שעולות לאוזניים","v":"https://www.youtube.com/watch?v=H_iZG5-L_KI","rest":"60 שנ׳","log":"t","m":{"core":1},"bw":true}]},{"t":"כוח","items":[{"id":"bench","n":"Bench press","sr":"4×5","c":["שכמות מאחור ולמטה, קשת קלה בגב העליון","רגליים דוחפות ברצפה","המוט יורד לאמצע החזה, מרפקים בכ-45°"],"x":"ישבן שמתרומם או מוט שקופץ מהחזה","v":"https://www.youtube.com/shorts/hWbUlkb5Ms4","rest":"3 דק׳","log":"wr","m":{"chest":1,"triceps":0.5,"fdelt":0.5}},{"id":"wchin","n":"Weighted chin-up","sr":"4×6","c":["אחיזה הפוכה ברוחב כתפיים","חזה אל המוט, מרפקים לצלעות","ירידה מלאה בשליטה"],"x":"לחתוך את הטווח למטה","v":"https://www.youtube.com/shorts/ykPUIEj4-W0","rest":"2–3 דק׳","log":"wr","m":{"lats":1,"biceps":0.5},"bw":true},{"id":"dbpress","n":"Seated DB shoulder press","sr":"3×8–10","c":["ספסל כמעט זקוף, גב צמוד למשענת","מרפקים מעט קדימה מהגוף","ירידה עד גובה האוזניים ודחיפה למעלה"],"x":"קשת גדולה בגב התחתון","v":"https://www.youtube.com/shorts/2D0TyoHv_EY","rest":"2 דק׳","log":"wr","m":{"fdelt":1,"sdelt":0.5,"triceps":0.5},"per":"db"}]},{"t":"נפח","items":[{"id":"csrow","n":"Chest-supported row","sr":"3×10","c":["חזה על ספסל משופע","מושך את המרפקים לאחור ולכיסים","עצירה קצרה עם שכמות סחוטות"],"x":"להרים את החזה מהספסל","v":"https://www.youtube.com/shorts/2ByilQ4NaAs","rest":"90 שנ׳","log":"wr","m":{"upper":1,"lats":0.5,"rdelt":0.5,"biceps":0.5}},{"id":"lat_raise","n":"Lateral raise","sr":"4×15","c":["נטייה קלה קדימה","מוביל עם המרפקים לצדדים עד גובה הכתף","ירידה איטית"],"x":"משקל כבד ותנופה של הגוף","v":"https://www.youtube.com/shorts/NZsldrqqca8","rest":"60 שנ׳","log":"wr","ss":"1","m":{"sdelt":1},"per":"db"},{"id":"facepull","n":"Face pull","sr":"3×15","c":["חבל בגובה העיניים","מושך לפנים ומפריד את הידיים","בסוף סיבוב חיצוני: אגרופים ליד האוזניים"],"x":"למשוך עם הגב התחתון","v":"https://www.youtube.com/watch?v=0Po47vvj9g4","rest":"60 שנ׳","log":"wr","ss":"1","m":{"rdelt":1,"upper":0.5}},{"id":"inc_curl","n":"Incline DB curl","sr":"3×10","c":["ספסל 45°, הזרועות תלויות מאחורי הגוף","מכופף בלי להזיז את המרפק קדימה","ירידה מלאה עד מתיחה"],"x":"להרים את המרפקים","v":"https://www.youtube.com/watch?v=DCe8f6vMe9A","rest":"60 שנ׳","log":"wr","ss":"2","m":{"biceps":1},"per":"db"},{"id":"oh_tri","n":"Overhead cable triceps extension","sr":"2×12","c":["גב לכבל, חבל מאחורי הראש","מרפקים ליד הראש ומצביעים קדימה","מיישר עד הסוף וחוזר למתיחה מלאה"],"x":"מרפקים שנפתחים לצדדים","v":"https://www.youtube.com/watch?v=8WC7rIOkhi0","rest":"60 שנ׳","log":"wr","ss":"2","m":{"triceps":1}}]},{"t":"רגליים","items":[{"id":"sled_rev","n":"Reverse sled drag","sr":"4×20 מ׳","c":["רצועות בידיים, הליכה לאחור","צעדים קצרים על כרית כף הרגל","ברכיים כפופות כל הזמן"],"x":"משקל כבד מדי שהופך את זה לזחילה","v":"https://www.youtube.com/watch?v=xan-WZGxgPk","rest":"60 שנ׳","log":"wr","m":{"quads":0.5}},{"id":"copen","n":"Copenhagen plank","sr":"2×20 שנ׳ לצד","c":["שוכב על הצד, רגל עליונה על ספסל","מתחילים עם הברך על הספסל ומתקדמים לקרסול","גוף ישר, אגן למעלה"],"x":"אגן שצונח","v":"https://www.youtube.com/watch?v=TH7B8ppYXOc","rest":"45 שנ׳","log":"t","m":{"hips":1,"core":0.5},"bw":true,"uni":true}]}]},{"id":"A2","type":"A","title":"רגליים · היפרטרופיה","sub":"ומעט חזה, גב וכתפיים","dur":"~85 דק׳","blocks":[{"t":"סקילים","items":[{"id":"s_nordic","n":"Nordic curl","sr":"3×3–5","c":["עקבים מקובעים, ברכיים על כרית","גוף ישר מהברך ועד הראש, ירידה איטית של 4–5 שניות","בהתחלה: גומייה בחזה או ירידה חלקית, ודחיפה חזרה עם הידיים. בשבועיים הראשונים רק 2 סטים"],"x":"להתכופף במותניים כדי להקל","v":"https://www.youtube.com/shorts/n7jvtdMJJ4w","rest":"2–3 דק׳","log":"r","m":{"hams":1},"bw":true}]},{"t":"כוח","items":[{"id":"trapdl","n":"Trap bar deadlift","sr":"4×5","c":["עומד במרכז המוט, הידיות בצדדים","ירכיים למטה, חזה למעלה, גב ניטרלי","דוחף את הרצפה ונועל עם הישבן"],"x":"למשוך עם הגב לפני שהרגליים דוחפות","v":"https://www.youtube.com/watch?v=mqiIFX4MinE","rest":"3 דק׳","log":"wr","m":{"glutes":1,"hams":0.5,"quads":0.5}}]},{"t":"נפח","items":[{"id":"hack","n":"Hack squat / Leg press","sr":"3×10","c":["רגליים ברוחב כתפיים באמצע המשטח","ירידה עמוקה כל עוד הגב התחתון צמוד","דחיפה דרך כל כף הרגל"],"x":"לנעול ברכיים בחוזקה למעלה","v":"https://www.youtube.com/watch?v=hglQExHCM9Q","rest":"2 דק׳","log":"wr","m":{"quads":1}},{"id":"hipthrust","n":"Hip thrust","sr":"3×8–10","c":["שכמות על הספסל, מוט על קפל הירך","סנטר לחזה, השוקיים אנכיות למעלה","דחיפה עם העקבים ועצירה של שנייה למעלה"],"x":"לקשת את הגב במקום ליישר את הירך","v":"https://www.youtube.com/watch?v=hCm-70-9_XE","rest":"2 דק׳","log":"wr","m":{"glutes":1}},{"id":"legcurl","n":"Seated leg curl","sr":"3×10–12","c":["הברך מיושרת עם ציר המכונה","גב צמוד, נטייה קלה קדימה מגדילה את המתיחה","מכופף עד הסוף ומשחרר לאט"],"x":"להקפיץ את המשקל","v":"https://www.youtube.com/shorts/aakNLjjm4Qo","rest":"90 שנ׳","log":"wr","m":{"hams":1}},{"id":"rev_nordic","n":"Reverse Nordic","sr":"2×8","c":["על הברכיים, גוף ישר מהברך ועד הראש","נשען אחורה עד שנוח ומשם חוזר","ישבן מכווץ. כשזה קל מוסיפים פלטה על החזה"],"x":"להתכופף במותניים","v":"https://www.youtube.com/watch?v=uJSCxJh-tec","rest":"60 שנ׳","log":"wr","ss":"1","m":{"quads":1},"bw":true},{"id":"calf_seat","n":"Seated calf raise","sr":"3×15","c":["ברכיים מתחת לכרית","ירידה עד מתיחה מלאה ועצירה","עלייה עד הסוף"],"x":"חצי טווח","v":"https://www.youtube.com/watch?v=I1uQtobaNRQ","rest":"60 שנ׳","log":"wr","ss":"1","m":{"calves":1}}]},{"t":"פלג עליון","items":[{"id":"incdb","n":"Incline DB press","sr":"3×8–10","c":["ספסל 30°, שכמות מאחור","ירידה עמוקה עד מתיחה בחזה","דחיפה למעלה ומעט פנימה"],"x":"לפתוח מרפקים ל-90°","v":"https://www.youtube.com/watch?v=IP4oeKh1Sd4","rest":"2 דק׳","log":"wr","m":{"chest":1,"fdelt":0.5,"triceps":0.5},"per":"db"},{"id":"dbrow","n":"Single-arm DB row","sr":"3×10 לצד","c":["יד וברך על ספסל, גב ישר ומקביל לרצפה","מושך את המשקולת לכיס, המרפק צמוד לגוף","ירידה מלאה עד מתיחה בגב"],"x":"לסובב את הגו כדי להרים","v":"https://www.youtube.com/watch?v=dFzUjzfih7k","rest":"90 שנ׳","log":"wr","m":{"upper":1,"lats":0.5,"biceps":0.5},"uni":true,"per":"db"},{"id":"facepull","n":"Face pull","sr":"2×15","c":["חבל בגובה העיניים","מושך לפנים ומפריד את הידיים","בסוף סיבוב חיצוני: אגרופים ליד האוזניים"],"x":"למשוך עם הגב התחתון","v":"https://www.youtube.com/watch?v=0Po47vvj9g4","rest":"60 שנ׳","log":"wr","m":{"rdelt":1,"upper":0.5}}]},{"t":"ירכיים ובטן","items":[{"id":"abduct","n":"Hip abduction","sr":"2×15","c":["יושב במכונה, נטייה קלה קדימה","דוחף את הברכיים החוצה עד הסוף","עצירה קצרה וחזרה איטית"],"x":"לתת למשקל לחזור מהר","v":"https://www.youtube.com/watch?v=TKtB6RWTTNc","rest":"45 שנ׳","log":"wr","ss":"2","m":{"hips":1,"glutes":0.5}},{"id":"abwheel","n":"Ab wheel rollout","sr":"3×8–12","c":["מהברכיים, אגן מקופל פנימה","מתגלגל קדימה כל עוד הגב ניטרלי","חוזר עם הבטן"],"x":"גב תחתון ששוקע","v":"https://www.youtube.com/watch?v=PK4n7qJpOhM","rest":"60 שנ׳","log":"r","ss":"2","m":{"core":1},"bw":true}]}]},{"id":"B2","type":"B","title":"פלג עליון · היפרטרופיה","sub":"ומעט רגליים","dur":"~85 דק׳","blocks":[{"t":"סקילים","items":[{"id":"s_mu","n":"Muscle-up progression","sr":"4–5 סטים","c":["שלב 1 (עד 10 מתח ו-15 מקבילים): Chest-to-bar מתפרצים 4×5","שלב 2: Straight bar dips 3×8 ושליליות של muscle-up 3×3","שלב 3: עם גומייה, ואז 5×1–3 נקי"],"x":"לנסות muscle-up מלא לפני שיש בסיס. ככה נפצעים במרפק","v":"https://www.youtube.com/watch?v=-b1TB7edF2E","v2":"https://www.youtube.com/watch?v=6rhowlOcTn0","v2t":"Straight bar dips","rest":"2–3 דק׳","log":"r","m":{"lats":0.5},"bw":true},{"id":"s_hs","n":"Wall handstand hold","sr":"3×20–40 שנ׳","c":["עולה עם הרגליים על הקיר עד שהבטן צמודה אליו","ידיים ברוחב כתפיים, דוחף את הרצפה","גוף ישר, בטן וישבן מכווצים"],"x":"גב מקושת כמו בננה","v":"https://www.youtube.com/watch?v=nuuvRjGpNKA","rest":"90 שנ׳","log":"t","m":{"fdelt":0.5,"triceps":0.25,"core":0.5},"bw":true}]},{"t":"כוח","items":[{"id":"wdips","n":"Weighted dips","sr":"4×6–8","c":["מתחיל נעול למעלה, כתפיים למטה","נטייה קלה קדימה","ירידה עד שהכתף מעט מתחת למרפק ודחיפה"],"x":"כתפיים שקורסות קדימה בתחתית","v":"https://www.youtube.com/watch?v=hsEKg3M45dc","rest":"2–3 דק׳","log":"wr","m":{"chest":1,"triceps":0.5,"fdelt":0.5},"bw":true},{"id":"bbrow","n":"Barbell row","sr":"4×6–8","c":["גב כמעט מקביל לרצפה, ברכיים רכות","מושך לבטן התחתונה","בלי תנופה של הגוף"],"x":"להתיישר בכל חזרה","v":"https://www.youtube.com/watch?v=FWJR5Ve8bnQ","rest":"2 דק׳","log":"wr","m":{"upper":1,"lats":0.5,"rdelt":0.5,"biceps":0.5}}]},{"t":"נפח","items":[{"id":"landmine","n":"Landmine press","sr":"2×10 לצד","c":["קצה המוט בגובה הכתף","דוחף קדימה ולמעלה עד יישור","בטן מכווצת, בלי סיבוב"],"x":"להתקשת לאחור","v":"https://www.youtube.com/watch?v=qPxvgth0dQQ","rest":"90 שנ׳","log":"wr","m":{"fdelt":1,"chest":0.5,"triceps":0.5},"uni":true},{"id":"pulldown","n":"Lat pulldown","sr":"3×12","c":["ברכיים מקובעות מתחת לכרית","מתיחה מלאה למעלה","מושך את המרפקים לכיסים, המוט לחזה העליון"],"x":"להישען אחורה ולמשוך עם הגוף","v":"https://www.youtube.com/shorts/SqQxuEpXnF4","rest":"90 שנ׳","log":"wr","m":{"lats":1,"biceps":0.5}},{"id":"reardelt","n":"Rear delt fly","sr":"3×15","c":["נטייה קדימה או חזה על ספסל","ידיים מעט כפופות, מוביל עם גב היד","לצדדים ולא לאחור"],"x":"לסחוט שכמות ולהפוך את זה לחתירה","v":"https://www.youtube.com/shorts/LsT-bR_zxLo","rest":"60 שנ׳","log":"wr","ss":"1","m":{"rdelt":1},"per":"db"},{"id":"cablelat","n":"Cable lateral raise","sr":"4×15","c":["הכבל עובר מאחורי הגוף","מרים לצד עד גובה הכתף","מתח קבוע לאורך כל התנועה"],"x":"להתנדנד עם הגוף","v":"https://www.youtube.com/watch?v=pFACLhcjeps","rest":"60 שנ׳","log":"wr","ss":"1","m":{"sdelt":1},"uni":true},{"id":"hammer","n":"Hammer curl","sr":"3×12","c":["אגודל למעלה, מרפקים קבועים","מכופף עד הסוף","ירידה איטית"],"x":"תנופה מהגב","v":"https://www.youtube.com/shorts/NyW2fT2gQhM","rest":"60 שנ׳","log":"wr","ss":"2","m":{"biceps":1,"grip":0.5},"per":"db"},{"id":"pushdown","n":"Triceps pushdown","sr":"3×12","c":["מרפקים צמודים לגוף","נעילה מלאה למטה","חזרה איטית עד 90°"],"x":"מרפקים שזזים קדימה","v":"https://www.youtube.com/shorts/v2fMq8RjNBw","rest":"60 שנ׳","log":"wr","ss":"2","m":{"triceps":1}}]},{"t":"רגליים","items":[{"id":"backext","n":"45° back extension","sr":"2×12","c":["ירכיים על הכרית, משקולת או פלטה על החזה","התנועה מהירכיים, גב ניטרלי","עולה עד קו ישר עם הרגליים ומכווץ ישבן"],"x":"לקשת את הגב מעבר לקו ישר","v":"https://www.youtube.com/watch?v=KA2AuDQipSQ","rest":"60 שנ׳","log":"wr","m":{"hams":0.5,"glutes":1},"bw":true},{"id":"tib","n":"Tibialis raise","sr":"2×20","c":["גב לקיר או ישיבה על ספסל, Tib bar או פלטה על כף הרגל","מרים את האצבעות עד הסוף","ירידה איטית ומבוקרת"],"x":"תנופה או חצי טווח","v":"https://www.youtube.com/watch?v=jJoeXumQUNU","rest":"60 שנ׳","log":"wr","m":{"tibs":1}}]},{"t":"ליבה ונשיאה","items":[{"id":"farmer","n":"Farmer's carry","sr":"3×30 מ׳","c":["משקולות כבדות בצדדים","עמידה זקופה, כתפיים למטה ואחורה","צעדים קצרים ומהירים"],"x":"להתכופף לצד","v":"https://www.youtube.com/watch?v=lLAw6fUccKA","rest":"90 שנ׳","log":"wr","m":{"grip":1,"upper":0.5,"core":0.5},"per":"db"},{"id":"sideplank","n":"Side plank","sr":"3×30 שנ׳ לצד","c":["מרפק מתחת לכתף","גוף ישר מהראש ועד הרגליים, אגן למעלה","כשזה קל מרימים את הרגל העליונה"],"x":"אגן שצונח לאחור","v":"https://www.youtube.com/watch?v=0M-erHBl48U","rest":"45 שנ׳","log":"t","m":{"core":1,"hips":0.5},"bw":true,"uni":true}]}]},{"id":"F","type":"F","title":"כושר ומוביליטי","sub":"יום שישי, אופציונלי","dur":"~45 דק׳","blocks":[{"t":"כושר","items":[{"id":"sled_push","n":"Sled push","sr":"6×20 מ׳","c":["גוף נטוי קדימה, ידיים נעולות","צעדים מהירים וקצרים","דוחפים דרך כרית כף הרגל"],"x":"להתכופף בגב","v":"https://www.youtube.com/watch?v=3KWK7SIdPz4","rest":"90 שנ׳","log":"wr"},{"id":"sprint","n":"Sprints / Assault bike","sr":"6×10–15 שנ׳","c":["מאמץ מקסימלי קצר","מנוחה מלאה בין החזרות","בחודש הראשון 80% מהמהירות"],"x":"לקצר מנוחה ולהפוך את זה לסבולת","v":"https://www.youtube.com/watch?v=NxEu6bs-2uQ","rest":"מלאה","log":"t"},{"id":"zone2","n":"Zone 2 cardio","sr":"30–40 דק׳","c":["חלופה לספרינטים: הליכה מהירה בשיפוע, אופניים או שחייה","קצב שאפשר לדבר בו במשפטים מלאים","טניס או כל משחק עם כדור נחשב"],"x":null,"v":"https://www.youtube.com/watch?v=jnHDJcOLYUI","log":"t"}]},{"t":"מוביליטי","items":[{"id":"flow","n":"Mobility flow","sr":"20 דק׳","c":["מתיחות הסיום של A ושל B ברצף, 2 סבבים","או אחד מסרטוני ה-follow along ברשימה","אפשר לסיים בסאונה"],"x":null,"v":"https://www.youtube.com/playlist?list=PL1eYPc-qNuO1Q4qPh6iorUi-5cczwjUYp","vt":"רשימת סרטונים"}]}]}],"restday":{"title":"יום מנוחה פעילה","when":"ג׳ (ושבת לפי התחושה)","items":[{"id":"r_walk","n":"הליכה בחוץ","sr":"30–45 דק׳","c":["עדיף בבוקר, באור יום","קצב נוח שאפשר לדבר בו","מזרים דם לשרירים ומסדר את השעון הביולוגי"],"x":null,"v":null},{"id":"r_mob","n":"מוביליטי קל","sr":"10 דק׳","c":["4–5 מתיחות מסוף האימון שהכי נוקשות לך","בלי מאמץ, רק טווח"],"x":null,"v":null},{"id":"r_nsdr","n":"NSDR · מנוחה עמוקה","sr":"10–20 דק׳","c":["שכיבה עם אוזניות ועיניים עצומות","מאזין להקלטה ומשחרר את הגוף","טוב במיוחד אחרי לילה קצר"],"x":null,"v":"https://www.youtube.com/watch?v=KHIbgSN2qAU"}]},"mind":["אימוני כוח מפחיתים באופן מובהק תסמינים של דיכאון וחרדה. כך עולה ממטא-אנליזה שפורסמה ב-2018 בכתב העת JAMA Psychiatry. ההתמדה חשובה יותר מהעצימות.","בסוף כל אימון: דקה-שתיים של Physiological sigh. זה מוריד את הדופק ומעביר את הגוף ממאמץ להתאוששות.","בבוקר: 10–20 דקות הליכה באור יום. מסדר את השעון הביולוגי, ומשפר שינה ומצב רוח.","פעם בשבוע משחק: טניס או כל ספורט עם אחרים. תנועה בשביל הכיף ולא בשביל מספרים.","ביום המנוחה: NSDR של 10–20 דקות בצהריים.","בצ׳ק-אין השבועי יש מצב רוח ולחץ. אם הם יורדים שבועיים ברצף, מורידים עומס לפני שמוסיפים."],"rules":["כוח (טווח של 5 חזרות): כשכל הסטים נקיים, מוסיפים 2.5 ק״ג בפלג עליון ו-5 ק״ג ברגליים.","נפח: עובדים בטווח חזרות. כשהגעת לתקרה בכל הסטים, מעלים משקל וחוזרים לתחתית הטווח.","עצימות: 1–2 חזרות לפני כשל ברוב הסטים. בתרגילי בידוד מותר להגיע לכשל בסט האחרון.","מנוחה: 2.5–3 דק׳ בתרגילי כוח, 60–90 שנ׳ בנפח ובסופרסטים.","כוח מתפרץ (קפיצות וזריקות) תמיד בתחילת האימון, כשהגוף טרי. איכות ולא עייפות.","דילואד בכל שבוע שישי: אותם משקלים, חצי מהסטים.","תרגיל שלא עלה שני אימונים ברצף: מורידים 10% ובונים מחדש."],"cues":["טווח לפני משקל. ב-ATG הטווח הוא התרגיל, והמשקל עולה רק כשהטווח מלא ונקי.","כאב חד, או כאב מעל 3 מתוך 10 בברך או בגב, עוצר את הסט. צריבה ומאמץ זה בסדר.","Tibialis, מזחלת לאחור ו-Poliquin הם מה שמכין את הברכיים לעומס. לא מדלגים עליהם.","שינה של 7.5–9 שעות. בלי זה אין מסה.","לא לוקחים משככי כאבים מסוג NSAIDs (אדוויל, נורופן, וולטרן בכדורים) לכאבי אימון. הם קשורים להתלקחויות במחלות מעי דלקתיות. לשאול את הרופא מה כן מותר.","מים ואלקטרוליטים, במיוחד אחרי סאונה ובימים עם יציאות מרובות: מים עם קורט מלח ולימון.","בזמן התלקחות: 2 אימונים בשבוע בחצי נפח, מוביליטי והליכות. חום, דם ביציאות או ירידה במשקל: פונים לגסטרואנטרולוג לפני שחוזרים לעומס.","שקילה: שלושה בקרים בשבוע (א׳, ד׳, ו׳), בצום, אחרי שירותים. בצ׳ק-אין מכניסים את הממוצע.","תמונות: כל 4 שבועות, בבוקר, בצום, באותה תאורה ובאותו מקום. חזית, צד וגב."],"adjust":["משקל: היעד הוא עלייה של 0.5–1 ק״ג בחודש. שלושה שבועות מתחת ליעד: מוסיפים כ-200 קק״ל (אורז, תפוח אדמה, שמן זית). מעל היעד והיקף המותניים עולה מהר: מורידים.","התאוששות של 4 ומטה שבועיים ברצף, או שינה מתחת ל-7 שעות: מורידים סט מכל תרגיל עד שזה חוזר.","מצב רוח או לחץ יורדים שבועיים ברצף: מורידים נפח, מוסיפים הליכות ומשחק, ובודקים שינה.","תרגיל שתקוע שני אימונים: מחליפים וריאציה או חוזרים 10% אחורה.","עיכול: נפיחות או כאב עולים ב-2 נקודות, או שינוי בצורת היציאה: חוזרים לשלב התזונה הקודם ובודקים מה נוסף לאחרונה.","בדיקות: קלפרוטקטין או CRP עולים — קודם הגסטרו. התזונה לא מחליפה טיפול.","מראה: לפי התמונות ולפי מאזן השרירים השבועי, אזור שמפגר (למשל כתפיים או ירכיים) מקבל 2–4 סטים שבועיים נוספים."],"nutrition":{"phase":"שלב 1 · בסיס נקי","weeks":"4 השבועות הראשונים","goal":"להוציא מזון מתועש, לייצב את העיכול ולבנות קו בסיס של תחושות לפני שמוסיפים מאכלים.","eat":["בשר בקר, עוף והודו טריים, לא מעובדים","דגים שמנים: סלמון, סרדינים, מקרל, 2–3 פעמים בשבוע","ביצים","אורז לבן, תפוח אדמה, בטטה","ירקות מבושלים: קישוא, גזר, דלעת, תרד, שעועית ירוקה","פירות: בננה, תפוח מבושל, אוכמניות, פפאיה","שמן זית, אבוקדו, טחינה גולמית אם נסבלת","ציר עצמות ביתי, עשבי תיבול, כורכום, ג׳ינג׳ר"],"test":["מאכל חדש אחד כל 3–4 ימים, ורושמים את התגובה בצ׳ק-אין","יוגורט או קפיר ביתי (תסיסה של 24 שעות)","כרוב כבוש, בכמות קטנה","קטניות מושרות ומבושלות היטב, קודם עדשים כתומות","אגוזים ושקדים, קודם כחמאה","שיבולת שועל","ירקות חיים וסלטים"],"avoid":["מזון אולטרה-מעובד: חטיפים, דגני בוקר, מאפים תעשייתיים","מתחלבים ומייצבים: קרבוקסימתיל צלולוז (E466), פוליסורבט 80 (E433), קרגינן (E407)","ממתיקים מלאכותיים (סוכרלוז, אספרטיים) ומלטודקסטרין","בשר מעובד: נקניקים, נקניקיות, פסטרמה","שמנים צמחיים מזוקקים וטיגון עמוק","אלכוהול ומשקאות ממותקים","אבקות חלבון עם ממתיקים וגאמים"]},"labs":[{"name":"ספירת דם (CBC) + CRP","freq":"כל 3 חודשים","m":3,"why":"דלקת ואנמיה"},{"name":"קלפרוטקטין בצואה","freq":"כל 3–6 חודשים","m":3,"why":"המדד הישיר לדלקת במעי"},{"name":"פריטין, ברזל, טרנספרין","freq":"כל 6 חודשים","m":6,"why":"מאגרי ברזל, משפיעים על אנרגיה והתאוששות"},{"name":"B12 וחומצה פולית","freq":"כל 6 חודשים","m":6,"why":"הספיגה שלהם נפגעת כשהמעי הדק מעורב"},{"name":"ויטמין D","freq":"כל 6 חודשים","m":6,"why":"עצמות, מערכת החיסון ושריר"},{"name":"אלבומין, תפקודי כבד וכליה","freq":"כל 6 חודשים","m":6,"why":"מצב תזונתי. הכליות חשובות עם חלבון גבוה וקריאטין"},{"name":"אבץ ומגנזיום","freq":"פעם בשנה","m":12,"why":"חסרים נפוצים במחלות מעי דלקתיות"},{"name":"פרופיל שומנים, HbA1c","freq":"פעם בשנה","m":12,"why":"בריאות מטבולית"},{"name":"הרכב גוף (InBody או DEXA)","freq":"כל 3 חודשים, רשות","m":3,"why":"מסת שריר מול שומן, מדויק יותר ממשקל"}],"changelog":[{"date":"2026-09-26","text":"גרסה ראשונה: 4 אימונים (A1, B1, A2, B2) ויום F אופציונלי. תזונה בשלב 1, בסיס נקי. הצ׳ק-אין הראשון קובע את נקודת הפתיחה: משקל, היקף מותניים, תמונות ומדדי עיכול."},{"date":"2026-09-27","text":"גרסה 2: לכל תרגיל יש סרטון הדגמה ישיר, 3 דגשים ו\"להימנע\". נוספו כוח מתפרץ (Box jump, זריקת כדור), Seated leg curl, Hip abduction, Farmer's carry ו-Side plank. הורחבו הכתפיים הצדדיות ל-8 סטים. נוספו יום מנוחה פעילה, פרק גוף ונפש ומאזן שרירים שבועי. יצאו Back extension, Pallof press, Dragon flag ו-Sissy squat כדי לשמור על משך אימון סביר."},{"date":"2026-09-27","text":"גרסה 3: בכל יום רגליים יש בלוק קטן של פלג עליון. A1: מתח עם משקל, לחיצת חזה במשקולות והרחקת כתפיים. A2: לחיצה בשיפוע, חתירה ביד אחת ו-Face pull. ב-B2 נוסף Back extension לרגליים. Pistol squat יצא מ-A2 ו-Overhead triceps ו-Landmine press ירדו ל-2 סטים כדי לשמור על המאזן ועל משך האימון."},{"date":"2026-09-27","text":"גרסה 4: ביומן אפשר לסמן לכל תרגיל \"משקל גוף\" ו\"צד אחד בכל פעם\". סט עם 0 חזרות לא נספר. נוספו טיימר מנוחה ותובנות אחרי כל אימון עם יעד לאימון הבא. השם שונה ל\"אימונים ונהנים\"."}]};
+
+const S = {
+  program: DEFAULT_PROGRAM, workouts: [], checkins: [], labs: [], reviews: [],
+  db: null, assets: null, dbState: 'pending',
+  tab: 'program', dayView: null, logDay: null, logDate: null, ciDate: null, labDate: null,
+  dirty: { log: false, ci: false, lab: false },
+  ciPhotos: [], ciNewPhotos: [], liftSel: null, armed: null
+};
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const yt = (q) => 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q);
+const pad2 = (n) => String(n).padStart(2, '0');
+const today = () => { const d = new Date(); return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); };
+const fmtD = (s) => { if (!s) return ''; const [y, m, d] = s.split('-'); return d + '.' + m + '.' + y.slice(2); };
+const num = (v) => { if (v === '' || v == null) return null; const n = Number(String(v).replace(',', '.')); return isFinite(n) ? n : null; };
+const fx = (n, d = 1) => n == null ? '–' : (Math.round(n * 10 ** d) / 10 ** d).toString();
+const daysBetween = (a, b) => Math.round((new Date(b) - new Date(a)) / 864e5);
+const setsCount = (sr) => { const m = String(sr).match(/^(\d+)\s*×/) || String(sr).match(/^(\d+)(?:–\d+)?\s*סטים/); return m ? Math.min(+m[1], 8) : 1; };
+const rxHtml = (sr) => { const m = String(sr).match(/^([0-9×–.:+\s-]+?)\s*([^0-9×–.:+\s-].*)?$/); if (!m) return esc(sr); return `<bdi dir="ltr">${esc(m[1].trim())}</bdi>${m[2] ? ' ' + esc(m[2]) : ''}`; };
+const dayById = (id) => S.program.days.find(d => d.id === id);
+const typeOf = (id) => (dayById(id) || {}).type || 'F';
+
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.hidden = false;
+  clearTimeout(toast._t); toast._t = setTimeout(() => { t.hidden = true; }, 2600);
+}
+function nextDay() {
+  const rot = S.program.rotation || ['A1', 'B1', 'A2', 'B2'];
+  const last = S.workouts.filter(w => rot.includes(w.day)).sort((a, b) => (b.date + (b.savedAt || '')).localeCompare(a.date + (a.savedAt || '')))[0];
+  if (!last) return rot[0];
+  return rot[(rot.indexOf(last.day) + 1) % rot.length];
+}
+/* ───────────── PROGRAM ───────────── */
+function numberItems(items) {
+  let n = 0, prevSS = null; const out = [];
+  items.forEach(it => {
+    if (it.ss && it.ss === prevSS) { out.push({ it, no: n + 'ב', ss: true }); out[out.length - 2].no = n + 'א'; out[out.length - 2].ss = true; }
+    else { n++; out.push({ it, no: String(n), ss: false }); }
+    prevSS = it.ss || null;
+  });
+  return out;
+}
+function vidLinks(it) {
+  const out = [];
+  const v = it.v || (it.q ? yt(it.q) : null);
+  if (v) out.push(`<a class="vid" href="${esc(v)}" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span>${esc(it.vt || 'סרטון הדגמה')}${/\/shorts\//.test(v) ? ' <em>קצר</em>' : ''}</a>`);
+  if (it.v2) out.push(`<a class="vid alt" href="${esc(it.v2)}" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span><bdi>${esc(it.v2t || 'סרטון נוסף')}</bdi></a>`);
+  return out.join('');
+}
+function dailyPick(opts) { return opts[Math.floor(Date.now() / 86400000) % opts.length]; }
+function optsHtml(opts) {
+  if (!opts || !opts.length) return '';
+  const pick = dailyPick(opts);
+  return `<div style="margin-top:8px;display:flex;flex-direction:column;gap:6px">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span class="tag good">היום מומלץ</span>
+      <b style="font-size:15px;direction:ltr">${esc(pick.n)}</b>
+      <a class="vid" href="${esc(pick.v)}" target="_blank" rel="noopener"><span class="play" aria-hidden="true"></span>הדגמה${/\/shorts\//.test(pick.v) ? ' <em>קצר</em>' : ''}</a>
+    </div>
+    ${pick.c ? `<p class="ex-cue">${esc(pick.c)}</p>` : ''}
+    <details style="font-size:13px;color:var(--muted)"><summary style="cursor:pointer">כל האפשרויות (${opts.length})</summary>
+      <div style="display:flex;flex-direction:column;gap:4px;margin-top:6px">${opts.map(o =>
+        `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <bdi style="font-weight:600;direction:ltr;min-width:140px">${esc(o.n)}</bdi>
+          <a class="minivid" href="${esc(o.v)}" target="_blank" rel="noopener">▶ הדגמה</a>
+          ${o.c ? `<span style="color:var(--faint)">${esc(o.c)}</span>` : ''}
+        </div>`).join('')}
+      </div>
+    </details>
+  </div>`;
+}
+function exRow(no, it, isSS) {
+  const cues = Array.isArray(it.c) ? `<ul class="cues">${it.c.map(c => `<li>${esc(c)}</li>`).join('')}</ul>` : (it.cue ? `<p class="ex-cue">${esc(it.cue)}</p>` : '');
+  return `<li class="ex">
+    <span class="ex-no${isSS ? ' ss' : ''}">${esc(no)}</span>
+    <div>
+      <div class="ex-top"><bdi class="ex-name">${esc(it.n)}</bdi>${it.opt ? '<span class="tag" style="font-size:11px">רשות</span>' : ''}<span class="rx">${rxHtml(it.sr)}</span></div>
+      ${it.opts ? optsHtml(it.opts) : cues}
+      ${it.x ? `<p class="avoid"><b>להימנע:</b> ${esc(it.x)}</p>` : ''}
+      <div class="ex-meta">
+        ${it.opts ? '' : vidLinks(it)}
+        ${isSS ? '<span class="ssmark">סופרסט</span>' : ''}
+        ${it.rest ? `<span>מנוחה ${esc(it.rest)}</span>` : ''}
+      </div>
+    </div></li>`;
+}
+function weeklyBalance() {
+  const p = S.program, t = {};
+  const rot = p.rotation || ['A1', 'B1', 'A2', 'B2'];
+  p.days.filter(d => rot.includes(d.id)).forEach(d => d.blocks.forEach(b => b.items.forEach(it => {
+    if (!it.m) return; const n = setsCount(it.sr);
+    for (const [k, w] of Object.entries(it.m)) t[k] = (t[k] || 0) + w * n;
+  })));
+  return t;
+}
+function balanceHtml() {
+  const p = S.program; if (!Array.isArray(p.targets)) return '';
+  const t = weeklyBalance();
+  const max = Math.max(24, ...p.targets.map(x => (t[x.k] || 0) + 2), ...p.targets.map(x => x.hi + 2));
+  const pct = (v) => (v / max * 100).toFixed(2) + '%';
+  const groups = [['legs', 'רגליים'], ['upper', 'פלג גוף עליון'], ['core', 'ליבה ואחיזה']];
+  const rows = groups.map(([g, gn]) => `<div class="bal-g">${gn}</div>` + p.targets.filter(x => x.g === g).map(x => {
+    const v = Math.round((t[x.k] || 0) * 10) / 10;
+    const st = v < x.lo ? '<span class="tag warn">מעט</span>' : v > x.hi ? '<span class="tag warn">הרבה</span>' : '<span class="tag good">בטווח</span>';
+    return `<div class="bal-row" title="${esc(x.n)}: ${v} סטים בשבוע, טווח מומלץ ${x.lo}–${x.hi}">
+      <span class="bal-n">${esc(x.n)}</span>
+      <div class="bal-track" aria-hidden="true"><div class="bal-band" style="inset-inline-start:${pct(x.lo)};width:${pct(x.hi - x.lo)}"></div><div class="bal-bar ${g}" style="width:${pct(v)}"></div></div>
+      <span class="bal-v">${v}</span>${st}</div>`;
+  }).join('')).join('');
+  return `<div class="panel stack">
+    <div class="duebar" style="flex-wrap:wrap"><h2 class="h3">מאזן שבועי לפי שריר</h2><span class="muted small">סטים בשבוע ב-A–C · האזור הירוק הוא הטווח המומלץ</span></div>
+    <p class="muted small">תרגיל שעובד על כמה שרירים נספר כסט מלא לשריר הראשי וכחצי סט לשרירים המשניים. אני מתאים את הטווחים לפי ההתקדמות והתמונות.</p>
+    <div class="bal">${rows}</div></div>`;
+}
+function renderProgram() {
+  const p = S.program, next = nextDay();
+  const sel = S.dayView && dayById(S.dayView) ? S.dayView : next;
+  const d = dayById(sel);
+  const t = d.type;
+  const warm = [...p.warmup.common, ...(p.warmup[t] || [])];
+  const cool = p.cooldown[t === 'B' ? 'B' : 'A'];
+  let counter = 0;
+  const blocks = d.blocks.map(b => {
+    const rows = numberItems(b.items).map(x => {
+      const base = parseInt(x.no, 10) + counter; const no = String(base) + x.no.replace(/^\d+/, '');
+      return exRow(no, x.it, x.ss);
+    });
+    counter += numberItems(b.items).filter(x => !/ב$/.test(x.no)).length;
+    return `<div class="block"><div class="block-h"><h3>${esc(b.t)}</h3><span>${b.items.length} תרגילים</span></div><ol class="exlist">${rows.join('')}</ol></div>`;
+  }).join('');
+
+  $('#tab-program').innerHTML = `
+    ${p.week.length ? `<div class="week" aria-label="השבוע">
+      ${p.week.map(w => {
+        const isDay = !!dayById(w.s);
+        return `<div class="wd${w.s === next ? ' next' : ''}"><b>${esc(w.d)}</b>${isDay ? `<span class="plate sm ${typeOf(w.s)}">${esc(w.s)}</span>` : `<span class="rest">${esc(w.s)}</span>`}</div>`;
+      }).join('')}
+    </div>` : `<div class="note" style="text-align:center;margin-bottom:4px"><b>A → B → C</b> רוטציה חופשית · האימון הבא נקבע לפי מה שרשמתם לאחרונה</div>`}
+    <div class="daypick" role="group" aria-label="בחירת אימון">
+      ${p.days.map(x => `<button data-act="day" data-id="${x.id}" aria-pressed="${x.id === sel}"><span class="plate ${x.type}">${esc(x.id)}</span><span class="lbl">${esc(x.title)}</span></button>`).join('')}
+    </div>
+    <article class="stack" style="gap:18px">
+      <div class="dayhead">
+        <span class="plate lg ${t}">${esc(d.id)}</span>
+        <div class="t">
+          <div class="row" style="gap:8px">${sel === next ? '<span class="tag next">האימון הבא</span>' : ''}${d.dur ? `<span class="tag">${esc(d.dur)}</span>` : ''}<span class="eyebrow">${esc(d.sub || '')}</span></div>
+          <h2 class="h2">${esc(d.title)}</h2>
+        </div>
+        <button class="btn" data-act="logthis" data-id="${d.id}">רשום את האימון הזה</button>
+      </div>
+      <details class="fold"><summary><span>חימום <span class="muted small">· ${esc(p.warmup.time)}</span></span></summary>
+        <div class="inner"><ol class="exlist">${warm.map((it, i) => exRow(String(i + 1), it, false)).join('')}</ol></div></details>
+      ${blocks}
+      <details class="fold"><summary><span>מתיחות סיום <span class="muted small">· ${esc(p.cooldown.time)}</span></span></summary>
+        <div class="inner"><ol class="exlist">${cool.map((it, i) => exRow(String(i + 1), it, false)).join('')}</ol>
+        ${p.cooldown.note ? `<p class="note" style="margin-top:10px">${esc(p.cooldown.note)}</p>` : ''}</div></details>
+      ${p.skills ? `<details class="fold"><summary><span>${esc(p.skills.title)} <span class="muted small">· ${esc(p.skills.note)}</span></span></summary>
+        <div class="inner"><ol class="exlist">${p.skills.items.map((it, i) => exRow(String(i + 1), it, false)).join('')}</ol></div></details>` : ''}
+    </article>
+    ${balanceHtml()}
+    ${p.restday ? `<details class="fold"><summary><span>${esc(p.restday.title)} <span class="muted small">· ${esc(p.restday.when || '')}</span></span></summary>
+      <div class="inner"><ol class="exlist">${p.restday.items.map((it, i) => exRow(String(i + 1), it, false)).join('')}</ol></div></details>` : ''}
+    ${Array.isArray(p.mind) ? `<div class="panel stack"><h2 class="h3">גוף ונפש</h2><ul class="clean good">${p.mind.map(c => `<li>${esc(c)}</li>`).join('')}</ul></div>` : ''}
+    <div class="grid2">
+      <div class="panel stack"><h2 class="h3">דגשים חשובים</h2><ul class="clean">${p.cues.map(c => `<li>${esc(c)}</li>`).join('')}</ul></div>
+      <div class="panel stack"><h2 class="h3">איך מתקדמים</h2><ul class="clean a">${p.rules.map(c => `<li>${esc(c)}</li>`).join('')}</ul>
+        <p class="note">${esc(p.cycle)}</p></div>
+    </div>
+    <div class="savebar" id="prog-timer-bar">
+      <div class="timer" id="prog-timer">
+        <span class="t-lbl">טיימר מנוחה</span><b id="pt-disp" class="mono">--:--</b>
+        <div class="t-q">${[60, 90, 180, 300].map(x => `<button data-act="pt-start" data-s="${x}">${x >= 180 ? x / 60 + ' דק׳' : x < 60 ? x + ' שנ׳' : x === 60 ? '1 דק׳' : '1.5 דק׳'}</button>`).join('')}</div>
+        <button class="linkbtn" data-act="pt-stop">עצור</button>
+        <i class="t-bar" id="pt-bar"></i>
+      </div>
+    </div>
+    <p class="foot">גרסה ${esc(p.version)} · עודכנה ${fmtD(p.updatedAt)} · כל סרטון נפתח ביוטיוב בלשונית חדשה. "קצר" מסמן סרטון של פחות מדקה.</p>`;
+  paintTimer();
+}
+
+/* ───────────── LOG ───────────── */
+const isDone = (s, log) => log === 't' ? (num(s.w) > 0 || num(s.r) > 0) : num(s.r) > 0;
+const doneSets = (e) => (e && e.sets || []).filter(s => isDone(s, e.log));
+const repRange = (sr) => { const m = String(sr).match(/×\s*(\d+)(?:–(\d+))?/); return m ? [+m[1], +(m[2] || m[1])] : null; };
+const isLegs = (it) => { const m = it.m || {}; return (m.quads || 0) + (m.hams || 0) + (m.glutes || 0) >= 1; };
+const bwOf = (it, e) => e && e.bw != null ? e.bw : !!it.bw;
+const uniOf = (it, e) => e && e.uni != null ? e.uni : !!it.uni;
+const fmtW = (w, bw) => bw ? (w > 0 ? 'משקל גוף +' + fx(w) : 'משקל גוף') : fx(w) + ' ק״ג';
+const itemsOfDay = (d) => d ? d.blocks.flatMap(b => b.items) : [];
+function findItem(exId) { for (const d of S.program.days) for (const b of d.blocks) for (const it of b.items) if (it.id === exId) return it; return null; }
+function setStr(s, log, bw) {
+  if (log === 't') return (num(s.w) || num(s.r) || 0) + 's';
+  const w = num(s.w) || 0, r = s.r ?? '';
+  if (bw) return (w > 0 ? 'BW+' + fx(w) : 'BW') + '×' + r;
+  return (w > 0 ? fx(w) : 'BW') + '×' + r;
+}
+function prevFor(exId, excludeId, beforeDate) {
+  for (const w of S.workouts) {
+    if (w.id === excludeId) continue;
+    if (beforeDate && w.date > beforeDate) continue;
+    const e = (w.ex || []).find(x => x.id === exId);
+    if (e && doneSets(e).length) return { w, e };
+  }
+  return null;
+}
+function suggestNext(it, e) {
+  if (!e || (it.log !== 'wr' && it.log !== 'r')) return null;
+  const ds = doneSets(e), rr = repRange(it.sr), planned = setsCount(it.sr);
+  if (!ds.length || !rr) return null;
+  const [bot, top] = rr, bw = bwOf(it, e);
+  const work = Math.max(...ds.map(s => num(s.w) || 0));
+  const ws = ds.filter(s => (num(s.w) || 0) === work);
+  const step = top <= 6 ? (isLegs(it) ? 5 : 2.5) : (it.per === 'db' ? 2 : 2.5);
+  const maxR = Math.max(...ws.map(s => num(s.r) || 0));
+  if (ws.length >= planned && ws.every(s => num(s.r) >= top)) return { w: work + step, r: bot, bw, why: 'כל הסטים הגיעו לתקרת הטווח' };
+  if (ws.some(s => num(s.r) >= top + 3)) return { w: work + step, r: bot, bw, why: 'יותר חזרות מהטווח, המשקל קל מדי' };
+  if (ws.length < planned) return { w: work, r: bot, bw, why: `להשלים ${planned} סטים באותו משקל` };
+  if (ws.some(s => num(s.r) < bot)) return { w: work, r: bot, bw, why: 'להישאר במשקל ולהגיע לטווח בכל הסטים' };
+  return { w: work, r: Math.min(top, maxR + 1), bw, why: 'אותו משקל, חזרה אחת יותר' };
+}
+function bestScore(e) {
+  let b = 0;
+  doneSets(e).forEach(s => { const w = num(s.w) || 0, r = num(s.r) || 0; const v = w > 0 && r <= 12 ? e1rm(w, r) : r; if (v > b) b = v; });
+  return b;
+}
+function workoutInsights(w) {
+  const d = dayById(w.day); if (!d) return null;
+  let planned = 0, done = 0; const skipped = [], partial = [], next = [], prs = [];
+  itemsOfDay(d).filter(it => it.log).forEach(it => {
+    const pl = setsCount(it.sr); planned += pl;
+    const e = (w.ex || []).find(x => x.id === it.id); const ds = doneSets(e);
+    done += Math.min(ds.length, pl);
+    if (!ds.length) { skipped.push(it.n); return; }
+    if (ds.length < pl) partial.push(`${it.n} (${ds.length}/${pl})`);
+    const sg = suggestNext(it, e); if (sg) next.push({ n: it.n, uni: uniOf(it, e), per: it.per, ...sg });
+    const pv = prevFor(it.id, w.id, w.date);
+    if (pv && it.log === 'wr' && bestScore(e) > bestScore(pv.e) * 1.001) prs.push(it.n);
+  });
+  return { planned, done, skipped, partial, next, prs };
+}
+function insightsHtml(w) {
+  const I = workoutInsights(w); if (!I) return '';
+  const rv = S.reviews.find(r => r.id === w.id);
+  const pct = I.planned ? Math.round(I.done / I.planned * 100) : 0;
+  return `<div class="panel stack insight">
+    <div class="duebar" style="flex-wrap:wrap"><h3 class="h3">תובנות מהאימון</h3><span class="tag ${pct >= 85 ? 'good' : 'warn'}">${I.done} מתוך ${I.planned} סטים · ${pct}%</span></div>
+    <ul class="clean a">
+      ${I.prs.length ? `<li>שיפור מהפעם הקודמת: <bdi>${esc(I.prs.join(', '))}</bdi></li>` : ''}
+      ${I.skipped.length ? `<li>לא בוצעו: <bdi>${esc(I.skipped.join(', '))}</bdi></li>` : ''}
+      ${I.partial.length ? `<li>פחות סטים מהתוכנית: <bdi>${esc(I.partial.join(', '))}</bdi></li>` : ''}
+      ${w.rpe ? `<li>מאמץ כללי ${w.rpe}/10${w.rpe <= 6 ? ', יש מקום להעלות משקלים' : w.rpe >= 9 ? ', גבוה. לשמור על שינה ותזונה לפני האימון הבא' : ''}</li>` : ''}
+    </ul>
+    ${I.next.length ? `<div class="stack" style="gap:6px"><b class="small">יעד לפעם הבאה</b>
+      <div class="nextlist">${I.next.map(x => `<div class="nx"><bdi class="ex-name">${esc(x.n)}</bdi><b class="mono">${esc(fmtW(x.w, x.bw))}${x.per === 'db' && !x.bw ? ' למשקולת' : ''} × ${x.r}${x.uni ? ' לצד' : ''}</b><span>${esc(x.why)}</span></div>`).join('')}</div></div>` : ''}
+    ${rv ? `<div class="note stack" style="gap:6px"><b>הערות של Claude · ${fmtD(rv.date)}</b>${String(rv.text || '').split('\n').filter(Boolean).map(t => `<p>${esc(t)}</p>`).join('')}</div>` : ''}
+  </div>`;
+}
+function exOpts(it, cur) {
+  if (it.log !== 'wr' && it.log !== 'r') return '';
+  const bw = bwOf(it, cur), uni = uniOf(it, cur);
+  const r = (name, val, on, label) => `<input type="radio" name="${name}" id="${name}-${val}" value="${val}" ${on ? 'checked' : ''}><label for="${name}-${val}">${label}</label>`;
+  return `<div class="exopts">
+    <div class="mini-seg" role="radiogroup" aria-label="סוג עומס">${r(`lg-${it.id}-load`, 'kg', !bw, 'משקולות')}${r(`lg-${it.id}-load`, 'bw', bw, 'משקל גוף')}</div>
+    <div class="mini-seg" role="radiogroup" aria-label="ביצוע">${r(`lg-${it.id}-uni`, '2', !uni, 'שני צדדים')}${r(`lg-${it.id}-uni`, '1', uni, 'צד אחד')}</div>
+  </div><div class="exhint" id="lg-${it.id}-hint">${hintText(it, bw, uni)}</div>`;
+}
+function hintText(it, bw, uni) {
+  const a = bw ? 'בתיבת הק״ג רושמים רק תוספת משקל (ריק או 0 = משקל גוף)' : it.per === 'db' ? 'ק״ג של משקולת אחת' : 'ק״ג כולל';
+  return a + (uni ? ' · חזרות לכל צד' : '');
+}
+function renderLogForm() {
+  const p = S.program;
+  const day = S.logDay && dayById(S.logDay) ? S.logDay : nextDay();
+  const date = S.logDate || today();
+  S.logDay = day; S.logDate = date;
+  const id = date + '_' + day;
+  const ex = S.workouts.find(w => w.id === id);
+  const d = dayById(day);
+  const got = (exId) => ex && (ex.ex || []).find(e => e.id === exId);
+  const blocks = d.blocks.map(b => `
+    <div class="block"><div class="block-h"><h3>${esc(b.t)}</h3></div>
+    ${b.items.map(it => {
+      const cur = got(it.id); const pv = prevFor(it.id, id, date);
+      const vid = it.v ? `<a class="minivid" href="${esc(it.v)}" target="_blank" rel="noopener">▶ הדגמה</a>` : '';
+      const head = `<div class="hd"><span><bdi class="ex-name">${esc(it.n)}</bdi> ${vid}</span><span class="rx">${rxHtml(it.sr)}${it.rest ? ` <span class="muted small">· ${esc(it.rest)}</span>` : ''}</span></div>`;
+      if (!it.log) return `<div class="logex">${head}<label class="check"><input type="checkbox" id="lg-${it.id}-done" ${cur && cur.done ? 'checked' : ''}> בוצע</label></div>`;
+      const pbw = pv ? bwOf(it, pv.e) : false;
+      const pvTxt = pv ? fmtD(pv.w.date) + ' · ' + doneSets(pv.e).map(s => setStr(s, it.log, pbw)).join(' · ') : '';
+      const sg = pv ? suggestNext(it, pv.e) : null;
+      const n = Math.max(setsCount(it.sr), cur ? cur.sets.length : 0);
+      const bw = bwOf(it, cur);
+      const lw = it.log === 't' ? 'שנ׳' : bw ? '+ק״ג' : 'ק״ג';
+      const rows = Array.from({ length: n }, (_, i) => {
+        const s = cur && cur.sets[i] || {}; const ps = pv && doneSets(pv.e)[i] || {};
+        return `<div class="set"><span>${i + 1}</span>
+          <input type="text" inputmode="decimal" id="lg-${it.id}-${i}-w" value="${esc(s.w ?? '')}" placeholder="${esc(ps.w || lw)}" aria-label="${esc(it.n)} סט ${i + 1} ${lw}">
+          ${it.log !== 't' ? `<input type="text" inputmode="numeric" id="lg-${it.id}-${i}-r" value="${esc(s.r ?? '')}" placeholder="${esc(ps.r || 'חז׳')}" aria-label="${esc(it.n)} סט ${i + 1} חזרות">` : '<i>שנ׳</i>'}
+        </div>`;
+      }).join('');
+      return `<div class="logex">${head}
+        ${pvTxt ? `<div class="prev">last: ${esc(pvTxt)}</div>` : ''}
+        ${sg ? `<div class="goal">יעד היום: <b>${esc(fmtW(sg.w, sg.bw))} × ${sg.r}</b></div>` : ''}
+        ${exOpts(it, cur)}
+        <div class="sets">${rows}</div></div>`;
+    }).join('')}</div>`).join('');
+
+  $('#log-form').innerHTML = `
+    <div class="dayhead">
+      <span class="plate lg ${d.type}">${esc(d.id)}</span>
+      <div class="t"><span class="eyebrow">${ex ? 'עריכת אימון שנשמר' : 'אימון חדש'}</span><h2 class="h2">${esc(d.title)}</h2></div>
+    </div>
+    <div class="fields">
+      <label class="f">אימון<select id="lg-day">${p.days.map(x => `<option value="${x.id}" ${x.id === day ? 'selected' : ''}>${x.id} · ${esc(x.title)}</option>`).join('')}</select></label>
+      <label class="f">תאריך<input type="date" id="lg-date" value="${date}"></label>
+    </div>
+    ${ex ? insightsHtml(ex) : ''}
+    <p class="muted small">המספרים האפורים הם מה שעשית בפעם הקודמת. סט שלא ביצעת משאירים ריק או 0 חזרות, והוא לא נספר. כשממלאים חזרות, טיימר המנוחה מתחיל לבד.</p>
+    ${blocks}
+    <div class="panel stack">
+      ${scale('lg-rpe', 'מאמץ כללי (RPE)', 1, 10, ex && ex.rpe, 'קל', 'מקסימלי')}
+      ${scale('lg-energy', 'אנרגיה באימון', 1, 10, ex && ex.energy, 'ריק', 'מלא')}
+      <label class="f">הבטן היום<select id="lg-gut">
+        ${['', 'רגועה', 'קצת רגישה', 'לא טובה'].map(v => `<option value="${v}" ${ex && ex.gut === v ? 'selected' : ''}>${v || '—'}</option>`).join('')}
+      </select></label>
+      <label class="f">הערות (כאבים, גומייה, תחושות)<textarea id="lg-notes">${esc(ex && ex.notes || '')}</textarea></label>
+    </div>
+    <div class="savebar">
+      <div class="timer" id="timer">
+        <span class="t-lbl">מנוחה</span><b id="t-disp" class="mono">--:--</b>
+        <div class="t-q">${[60, 90, 180, 300].map(x => `<button data-act="t-start" data-s="${x}">${x >= 180 ? x / 60 + ' דק׳' : x < 60 ? x + ' שנ׳' : x === 60 ? '1 דק׳' : '1.5 דק׳'}</button>`).join('')}</div>
+        <button class="linkbtn" data-act="t-stop">עצור</button>
+        <i class="t-bar" id="t-bar"></i>
+      </div>
+      <div class="save-row"><span class="muted small" id="autosave">${S.db ? 'כל סט נשמר אוטומטית תוך כמה שניות' : 'השמירה לא זמינה בתצוגה הזו'}</span>
+      <button class="btn" data-act="savelog" ${S.db ? '' : 'disabled'}>שמור אימון</button></div>
+    </div>`;
+  paintTimer();
+}
+function scale(id, label, min, max, val, lo, hi) {
+  const opts = []; for (let v = min; v <= max; v++) opts.push(`<input type="radio" name="${id}" id="${id}-${v}" value="${v}" ${val === v ? 'checked' : ''}><label for="${id}-${v}">${v}</label>`);
+  return `<div class="scale"><div class="lbl"><span>${esc(label)}</span><em>${esc(lo)} ← → ${esc(hi)}</em></div><div class="pills" role="radiogroup" aria-label="${esc(label)}">${opts.join('')}</div></div>`;
+}
+const radioVal = (name) => { const r = $(`input[name="${name}"]:checked`); return r ? +r.value : null; };
+const radioStr = (name) => { const r = $(`input[name="${name}"]:checked`); return r ? r.value : null; };
+
+async function saveLog(quiet = false) {
+  const d = dayById(S.logDay), date = $('#lg-date').value || today();
+  const ex = [];
+  d.blocks.forEach(b => b.items.forEach(it => {
+    if (!it.log) { const c = $(`#lg-${it.id}-done`); if (c && c.checked) ex.push({ id: it.id, n: it.n, done: true, sets: [] }); return; }
+    const sets = [];
+    for (let i = 0; i < 8; i++) {
+      const w = $(`#lg-${it.id}-${i}-w`); if (!w) break;
+      const r = $(`#lg-${it.id}-${i}-r`);
+      const s = { w: w.value.trim(), r: r ? r.value.trim() : '' };
+      if (isDone(s, it.log)) sets.push(s);
+    }
+    if (!sets.length) return;
+    const e = { id: it.id, n: it.n, log: it.log, sets };
+    const ld = radioStr(`lg-${it.id}-load`), un = radioStr(`lg-${it.id}-uni`);
+    if (ld) e.bw = ld === 'bw';
+    if (un) e.uni = un === '1';
+    ex.push(e);
+  }));
+  if (!ex.length) { if (!quiet) toast('לא הוזנו סטים עם חזרות'); return; }
+  const doc = { date, day: d.id, ex, rpe: radioVal('lg-rpe'), energy: radioVal('lg-energy'), gut: $('#lg-gut').value, notes: $('#lg-notes').value.trim(), savedAt: new Date().toISOString() };
+  try {
+    await S.db.doc('workouts/' + date + '_' + d.id).set(doc);
+    if (quiet) { const st = $('#autosave'); if (st) st.textContent = 'נשמר אוטומטית ' + new Date().toLocaleTimeString('he-IL', { hour: '2-digit', minute: '2-digit' }); return; }
+    S.dirty.log = false; S.logDate = date; toast('האימון נשמר'); renderLogForm(); window.scrollTo({ top: 0 });
+  } catch (e) { if (quiet) return; toast(e && e.code === 'quota_exceeded' ? 'היומן מלא, צריך למחוק אימונים ישנים' : 'השמירה נכשלה, נסה שוב'); }
+}
+function topSets(w) {
+  return (w.ex || []).filter(e => e.log === 'wr' && doneSets(e).length).slice(0, 3).map(e => {
+    const ds = doneSets(e);
+    const best = ds.reduce((a, s) => (num(s.w) || 0) > (num(a.w) || 0) ? s : a, ds[0]);
+    return e.n.split(' /')[0] + ' ' + setStr(best, 'wr', e.bw);
+  }).join(' · ');
+}
+function renderLogHist() {
+  const el = $('#log-hist');
+  if (!S.workouts.length) { el.innerHTML = `<p class="empty">${S.db ? 'עוד אין אימונים. אחרי השמירה הראשונה הם יופיעו כאן.' : 'היומן לא זמין בתצוגה הזו.'}</p>`; return; }
+  el.innerHTML = S.workouts.slice(0, 12).map(w => {
+    const I = workoutInsights(w);
+    return `<div class="hitem"><span class="plate sm ${typeOf(w.day)}">${esc(w.day)}</span>
+      <div><div class="d">${fmtD(w.date)}${I ? ' · ' + I.done + '/' + I.planned + ' סטים' : ''}${w.rpe ? ' · RPE ' + w.rpe : ''}${w.gut ? ' · בטן: ' + esc(w.gut) : ''}${S.reviews.some(r => r.id === w.id) ? ' · <span class="tag">יש הערות</span>' : ''}</div><div class="s"><bdi>${esc(topSets(w) || (w.ex || []).length + ' תרגילים')}</bdi></div></div>
+      <div class="acts"><button class="linkbtn" data-act="editlog" data-id="${esc(w.id)}">תובנות ועריכה</button>
+      <button class="linkbtn bad" data-act="del" data-col="workouts" data-id="${esc(w.id)}">${S.armed === 'workouts/' + w.id ? 'למחוק? לחץ שוב' : 'מחק'}</button></div>
+    </div>`;
+  }).join('');
+}
+
+/* ───────────── REST TIMER ───────────── */
+const T = { end: 0, total: 0, int: null, audio: null };
+function restSecs(r) { if (!r) return 90; const m = String(r).match(/(\d+)/); if (!m) return 180; return /דק/.test(r) ? +m[1] * 60 : +m[1]; }
+function ensureAudio() { try { if (!T.audio) T.audio = new (window.AudioContext || window.webkitAudioContext)(); if (T.audio.state === 'suspended') T.audio.resume(); } catch (e) {} }
+function beep() {
+  try { const a = T.audio; if (!a) return; [0, 0.35].forEach(t0 => { const o = a.createOscillator(), g = a.createGain(); o.frequency.value = 880; g.gain.setValueAtTime(0.25, a.currentTime + t0); g.gain.exponentialRampToValueAtTime(0.001, a.currentTime + t0 + 0.28); o.connect(g); g.connect(a.destination); o.start(a.currentTime + t0); o.stop(a.currentTime + t0 + 0.3); }); } catch (e) {}
+}
+function startTimer(sec) { ensureAudio(); T.total = sec; T.end = Date.now() + sec * 1000; clearInterval(T.int); T.int = setInterval(paintTimer, 250); paintTimer(); }
+function stopTimer() { clearInterval(T.int); T.end = 0; paintTimer(); }
+function paintTimer() {
+  const pairs = [['#t-disp', '#t-bar', '#timer'], ['#pt-disp', '#pt-bar', '#prog-timer']];
+  const left = T.end ? Math.max(0, Math.ceil((T.end - Date.now()) / 1000)) : -1;
+  const txt = left >= 0 ? pad2(Math.floor(left / 60)) + ':' + pad2(left % 60) : '--:--';
+  const pct = left >= 0 && T.total ? (100 - left / T.total * 100).toFixed(1) + '%' : '0';
+  pairs.forEach(([dSel, bSel, boxSel]) => {
+    const el = $(dSel), bar = $(bSel), box = $(boxSel); if (!el) return;
+    el.textContent = txt;
+    if (bar) bar.style.width = pct;
+    if (left < 0) box.classList.remove('run'); else box.classList.add('run');
+  });
+  if (left === 0) {
+    clearInterval(T.int); T.end = 0; beep();
+    try { navigator.vibrate && navigator.vibrate([300, 120, 300]); } catch (e) {}
+    pairs.forEach(([, , boxSel]) => { const b = $(boxSel); if (b) b.classList.add('ring'); });
+    setTimeout(() => { pairs.forEach(([, , boxSel]) => { const b = $(boxSel); if (b) b.classList.remove('ring'); }); paintTimer(); }, 2500);
+    toast('המנוחה נגמרה. לסט הבא');
+  }
+}
+function autoRest(inputId, value) {
+  const m = inputId.match(/^lg-(.+)-(\d+)-([wr])$/); if (!m) return;
+  const it = findItem(m[1]); if (!it || !it.log) return;
+  if ((it.log === 't') !== (m[3] === 'w')) return;
+  if (!(num(value) > 0)) return;
+  const d = dayById(S.logDay); const blk = d && d.blocks.find(b => b.items.includes(it));
+  if (blk && it.ss) { const i = blk.items.indexOf(it); const nx = blk.items[i + 1]; if (nx && nx.ss === it.ss) return; }
+  startTimer(restSecs(it.rest));
+}
+
+/* ───────────── CHECK-IN ───────────── */
+const photoUrl = (id) => '/_blob/' + id;
+function renderCiForm() {
+  const date = S.ciDate || today(); S.ciDate = date;
+  const c = S.checkins.find(x => x.id === date) || null;
+  S.ciPhotos = c && Array.isArray(c.photos) ? [...c.photos] : [];
+  S.ciNewPhotos = [];
+  const v = (k) => c && c[k] != null ? c[k] : '';
+  $('#ci-form').innerHTML = `
+    <div class="stack" style="gap:4px"><span class="eyebrow">פעם בשבוע · שישי או שבת בבוקר</span><h2 class="h2">צ׳ק-אין שבועי</h2>
+      <p class="muted">שלוש דקות. זה מה שאני קורא כדי להחליט מה לשנות באימונים ובתזונה.</p></div>
+    <div class="panel stack">
+      <h3 class="h3">גוף</h3>
+      <div class="fields">
+        <label class="f">תאריך<input type="date" id="ci-date" value="${date}"></label>
+        <label class="f">משקל ממוצע (ק״ג)<input type="text" inputmode="decimal" id="ci-weight" value="${esc(v('weight'))}" placeholder="למשל 78.4"></label>
+        <label class="f">היקף מותניים בטבור (ס״מ)<input type="text" inputmode="decimal" id="ci-waist" value="${esc(v('waist'))}"></label>
+        <label class="f">שינה ממוצעת (שעות)<input type="text" inputmode="decimal" id="ci-sleep" value="${esc(v('sleep'))}"></label>
+      </div>
+      ${scale('ci-recovery', 'התאוששות מהאימונים', 1, 10, c && c.recovery, 'הרוס', 'טרי')}
+      ${scale('ci-energy', 'אנרגיה ביום-יום', 1, 10, c && c.energy, 'נמוכה', 'גבוהה')}
+    </div>
+    <div class="panel stack">
+      <h3 class="h3">מעי ועיכול</h3>
+      <div class="fields"><label class="f">יציאות ביום (ממוצע)<input type="text" inputmode="decimal" id="ci-bm" value="${esc(v('bm'))}"></label></div>
+      ${scale('ci-bristol', 'צורת יציאה נפוצה (סולם בריסטול)', 1, 7, c && c.bristol, '1–2 קשה', '6–7 נוזלי')}
+      ${scale('ci-bloating', 'נפיחות', 0, 10, c && c.bloating, 'אין', 'חזקה')}
+      ${scale('ci-pain', 'כאבי בטן', 0, 10, c && c.pain, 'אין', 'חזקים')}
+      <label class="check"><input type="checkbox" id="ci-blood" ${c && c.blood ? 'checked' : ''}> היה דם או ריר ביציאות השבוע</label>
+      <div id="ci-blood-alert" class="alert" ${c && c.blood ? '' : 'hidden'}>דם או ריר ביציאות זה סימן לפנות לגסטרואנטרולוג השבוע. עד אז: אימונים קלים בלבד.</div>
+      <label class="f">מאכלים שהוספתי או הורדתי<textarea id="ci-foods">${esc(v('newFoods'))}</textarea></label>
+      <label class="f">איך הגוף הגיב<textarea id="ci-reactions">${esc(v('reactions'))}</textarea></label>
+    </div>
+    <div class="panel stack">
+      <h3 class="h3">ראש</h3>
+      ${scale('ci-mood', 'מצב רוח', 1, 10, c && c.mood, 'ירוד', 'מצוין')}
+      ${scale('ci-stress', 'לחץ', 1, 10, c && c.stress, 'רגוע', 'לחוץ מאוד')}
+      <label class="f">מה עוד כדאי שאדע (תחושות, מראה, מה עבד, מה לא)<textarea id="ci-notes">${esc(v('notes'))}</textarea></label>
+    </div>
+    <div class="panel stack">
+      <div class="duebar"><h3 class="h3">תמונות התקדמות</h3><span class="muted small">כל 4 שבועות · חזית, צד, גב</span></div>
+      <div class="photos" id="ci-photos"></div>
+      ${S.assets ? `<label class="btn ghost" style="align-self:flex-start">הוסף תמונות<input type="file" id="ci-file" accept="image/*" multiple hidden></label>` : `<p class="muted small">העלאת תמונות זמינה רק למי שיכול לערוך את המחברת.</p>`}
+      <p class="muted small">התמונות נשמרות בתוך המחברת הפרטית שלך. אם תשתף את הקישור, מי שיקבל אותו יוכל לראות אותן.</p>
+    </div>
+    <div class="savebar"><span class="muted small">${c ? 'עריכת צ׳ק-אין מ-' + fmtD(date) : 'צ׳ק-אין חדש'}</span>
+      <button class="btn" data-act="saveci" ${S.db ? '' : 'disabled'}>שמור צ׳ק-אין</button></div>`;
+  drawCiPhotos();
+}
+function drawCiPhotos() {
+  const el = $('#ci-photos'); if (!el) return;
+  const all = [...S.ciPhotos, ...S.ciNewPhotos];
+  el.innerHTML = all.length ? all.map(id => `<div class="ph"><img src="${photoUrl(id)}" alt="תמונת התקדמות"><button data-act="rmphoto" data-id="${id}" aria-label="הסר תמונה">×</button></div>`).join('') : '<p class="muted small">אין תמונות בצ׳ק-אין הזה.</p>';
+}
+async function shrink(file) {
+  try {
+    const bmp = await createImageBitmap(file);
+    const s = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+    const c = document.createElement('canvas'); c.width = Math.round(bmp.width * s); c.height = Math.round(bmp.height * s);
+    c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+    return await new Promise(r => c.toBlob(b => r(b || file), 'image/jpeg', 0.85));
+  } catch (e) { return file; }
+}
+async function uploadPhotos(files) {
+  for (const f of files) {
+    try {
+      const blob = await shrink(f);
+      const res = await S.assets.upload(blob, { type: blob.type || 'image/jpeg' });
+      S.ciNewPhotos.push(res.id); S.dirty.ci = true; drawCiPhotos();
+    } catch (e) {
+      toast(e && e.code === 'unsupported_type' ? 'פורמט לא נתמך. העלה JPG או PNG' : e && e.code === 'quota_or_state' ? 'נגמר המקום לתמונות' : 'ההעלאה נכשלה');
+    }
+  }
+}
+async function saveCi() {
+  const date = $('#ci-date').value || today();
+  const old = S.checkins.find(x => x.id === date);
+  const doc = {
+    date, weight: num($('#ci-weight').value), waist: num($('#ci-waist').value), sleep: num($('#ci-sleep').value),
+    recovery: radioVal('ci-recovery'), energy: radioVal('ci-energy'), bm: num($('#ci-bm').value),
+    bristol: radioVal('ci-bristol'), bloating: radioVal('ci-bloating'), pain: radioVal('ci-pain'), blood: $('#ci-blood').checked,
+    newFoods: $('#ci-foods').value.trim(), reactions: $('#ci-reactions').value.trim(),
+    mood: radioVal('ci-mood'), stress: radioVal('ci-stress'), notes: $('#ci-notes').value.trim(),
+    photos: [...S.ciPhotos, ...S.ciNewPhotos], savedAt: new Date().toISOString()
+  };
+  try {
+    await S.db.doc('checkins/' + date).set(doc);
+    if (old && Array.isArray(old.photos) && S.assets) {
+      for (const id of old.photos) if (!doc.photos.includes(id)) { try { await S.assets.delete(id); } catch (e) {} }
+    }
+    S.dirty.ci = false; S.ciDate = date; toast('הצ׳ק-אין נשמר'); renderCiForm();
+  } catch (e) { toast('השמירה נכשלה, נסה שוב'); }
+}
+function renderCiHist() {
+  const el = $('#ci-hist');
+  if (!S.checkins.length) { el.innerHTML = `<p class="empty">הצ׳ק-אין הראשון הוא נקודת הפתיחה. כדאי למלא אותו עם תמונות.</p>`; return; }
+  const cell = (v) => `<td class="num">${v == null || v === '' ? '–' : esc(v)}</td>`;
+  el.innerHTML = `<div class="tablewrap"><table>
+    <thead><tr><th>תאריך</th><th>משקל</th><th>מותניים</th><th>שינה</th><th>התאוששות</th><th>אנרגיה</th><th>בריסטול</th><th>נפיחות</th><th>כאב</th><th>מצב רוח</th><th>דם</th><th>תמונות</th><th></th></tr></thead>
+    <tbody>${S.checkins.map(c => `<tr>
+      <td class="num">${fmtD(c.date)}</td>${cell(c.weight)}${cell(c.waist)}${cell(c.sleep)}${cell(c.recovery)}${cell(c.energy)}${cell(c.bristol)}${cell(c.bloating)}${cell(c.pain)}${cell(c.mood)}
+      <td>${c.blood ? '<span class="tag bad">כן</span>' : '–'}</td><td class="num">${(c.photos || []).length || '–'}</td>
+      <td><button class="linkbtn" data-act="editci" data-id="${esc(c.id)}">ערוך</button></td></tr>`).join('')}</tbody></table></div>`;
+}
+
+/* ───────────── LABS ───────────── */
+const MARKERS = [
+  ['calpro', 'קלפרוטקטין', 'µg/g'], ['crp', 'CRP', 'mg/L'], ['hb', 'המוגלובין', 'g/dL'], ['ferritin', 'פריטין', 'ng/mL'],
+  ['b12', 'B12', 'pg/mL'], ['folate', 'חומצה פולית', 'ng/mL'], ['vitd', 'ויטמין D', 'ng/mL'], ['albumin', 'אלבומין', 'g/dL']
+];
+function addMonths(dateStr, m) { const d = new Date(dateStr); d.setMonth(d.getMonth() + m); return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+function renderLabSched() {
+  const t = today();
+  const rows = S.program.labs.map(l => {
+    const last = S.labs.find(x => (x.panels || []).includes(l.name));
+    let status = '<span class="tag">אין עדיין</span>', due = '–';
+    if (last) {
+      due = addMonths(last.date, l.m); const left = daysBetween(t, due);
+      status = left < 0 ? '<span class="tag bad">עבר המועד</span>' : left <= 30 ? '<span class="tag warn">בחודש הקרוב</span>' : '<span class="tag good">בזמן</span>';
+      due = fmtD(due);
+    }
+    return `<tr><td><b>${esc(l.name)}</b><div class="muted small" style="white-space:normal;min-width:180px">${esc(l.why)}</div></td><td>${esc(l.freq)}</td><td class="num">${last ? fmtD(last.date) : '–'}</td><td class="num">${due}</td><td>${status}</td></tr>`;
+  }).join('');
+  $('#lab-sched').innerHTML = `
+    <div class="stack" style="gap:4px"><span class="eyebrow">לוח בדיקות</span><h2 class="h2">מה בודקים ומתי</h2>
+      <p class="muted">הצעה לתדירות. הגסטרואנטרולוג קובע לפי המצב שלך והטיפול. כשיש תוצאות, מכניסים אותן למטה ואני משווה לתקופה הקודמת.</p></div>
+    <div class="tablewrap"><table><thead><tr><th>בדיקה</th><th>תדירות</th><th>אחרונה</th><th>הבאה</th><th>מצב</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+}
+function renderLabForm() {
+  const date = S.labDate || today(); S.labDate = date;
+  const l = S.labs.find(x => x.id === date) || null;
+  $('#lab-form').innerHTML = `
+    <div class="panel stack">
+      <h3 class="h3">${l ? 'עריכת תוצאות מ-' + fmtD(date) : 'הוספת תוצאות'}</h3>
+      <div class="fields"><label class="f">תאריך הבדיקה<input type="date" id="lb-date" value="${date}"></label></div>
+      <div class="stack" style="gap:6px"><span class="small muted" style="font-weight:600">מה נבדק</span>
+        <div class="row" style="gap:8px 16px">${S.program.labs.map((x, i) => `<label class="check" style="font-weight:500"><input type="checkbox" id="lb-p-${i}" data-name="${esc(x.name)}" ${l && (l.panels || []).includes(x.name) ? 'checked' : ''} style="accent-color:var(--a)"> ${esc(x.name)}</label>`).join('')}</div></div>
+      <div class="fields">${MARKERS.map(([k, n, u]) => `<label class="f">${esc(n)} <span style="font-weight:400">(${u})</span><input type="text" inputmode="decimal" id="lb-${k}" value="${esc(l && l[k] != null ? l[k] : '')}"></label>`).join('')}</div>
+      <label class="f">ערכים נוספים והערות הרופא<textarea id="lb-notes">${esc(l && l.notes || '')}</textarea></label>
+      <div class="row"><button class="btn" data-act="savelab" ${S.db ? '' : 'disabled'}>שמור תוצאות</button></div>
+    </div>`;
+}
+async function saveLab() {
+  const date = $('#lb-date').value || today();
+  const doc = { date, panels: $$('#lab-form input[id^="lb-p-"]').filter(x => x.checked).map(x => x.dataset.name), notes: $('#lb-notes').value.trim(), savedAt: new Date().toISOString() };
+  MARKERS.forEach(([k]) => { doc[k] = num($('#lb-' + k).value); });
+  try { await S.db.doc('labs/' + date).set(doc); S.dirty.lab = false; S.labDate = date; toast('התוצאות נשמרו'); renderLabForm(); }
+  catch (e) { toast('השמירה נכשלה, נסה שוב'); }
+}
+function renderLabHist() {
+  const el = $('#lab-hist');
+  if (!S.labs.length) { el.innerHTML = '<p class="empty">עוד אין תוצאות. כדאי להתחיל עם בדיקות הבסיס מהרשימה למעלה.</p>'; return; }
+  el.innerHTML = `<div class="tablewrap"><table><thead><tr><th>תאריך</th>${MARKERS.map(([, n]) => `<th>${esc(n)}</th>`).join('')}<th>הערות</th><th></th></tr></thead>
+    <tbody>${S.labs.map(l => `<tr><td class="num">${fmtD(l.date)}</td>${MARKERS.map(([k]) => `<td class="num">${l[k] == null ? '–' : esc(l[k])}</td>`).join('')}
+    <td style="white-space:normal;min-width:160px">${esc(l.notes || '')}</td><td><button class="linkbtn" data-act="editlab" data-id="${esc(l.id)}">ערוך</button></td></tr>`).join('')}</tbody></table></div>`;
+}
+
+/* ───────────── PROGRESS ───────────── */
+function niceTicks(min, max, n) {
+  const span = max - min, raw = span / n, mag = 10 ** Math.floor(Math.log10(raw)), f = raw / mag;
+  const step = (f >= 5 ? 10 : f >= 2 ? 5 : f >= 1 ? 2 : 1) * mag;
+  const out = []; for (let v = Math.floor(min / step) * step; v <= max + step * 0.001; v += step) out.push(+v.toFixed(6));
+  return out;
+}
+function lineChart(host, pts, unit) {
+  if (pts.length < 2) { host.innerHTML = `<p class="empty" dir="rtl">הגרף יופיע אחרי שתי מדידות לפחות.</p>`; return; }
+  const W = Math.max(280, host.clientWidth || 600), H = 210, L = 44, R = 56, T = 14, B = 28;
+  const ts = pts.map(p => +new Date(p.t)), vs = pts.map(p => p.v);
+  let lo = Math.min(...vs), hi = Math.max(...vs); if (lo === hi) { lo -= 1; hi += 1; }
+  const padv = (hi - lo) * 0.18; const ticks = niceTicks(lo - padv, hi + padv, 4);
+  lo = ticks[0]; hi = ticks[ticks.length - 1];
+  const t0 = ts[0], t1 = ts[ts.length - 1] === t0 ? t0 + 1 : ts[ts.length - 1];
+  const X = (t) => L + (t - t0) / (t1 - t0) * (W - L - R), Y = (v) => T + (hi - v) / (hi - lo) * (H - T - B);
+  const line = pts.map((p, i) => (i ? 'L' : 'M') + X(ts[i]).toFixed(1) + ' ' + Y(p.v).toFixed(1)).join(' ');
+  const area = line + ` L${X(ts[ts.length - 1]).toFixed(1)} ${H - B} L${X(ts[0]).toFixed(1)} ${H - B} Z`;
+  const xl = [0, pts.length - 1]; if (W > 520 && pts.length > 4) xl.splice(1, 0, Math.floor((pts.length - 1) / 2));
+  const last = pts[pts.length - 1];
+  host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="גרף">
+    ${ticks.map(v => `<line class="ch-grid" x1="${L}" x2="${W - R}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ch-axis" x="${L - 8}" y="${Y(v) + 4}" text-anchor="end">${fx(v, 1)}</text>`).join('')}
+    ${xl.map(i => `<text class="ch-axis" x="${X(ts[i])}" y="${H - 8}" text-anchor="middle">${fmtD(pts[i].t).slice(0, 5)}</text>`).join('')}
+    <path class="ch-area" d="${area}"/><path class="ch-line" d="${line}"/>
+    <circle class="ch-dot" cx="${X(ts[ts.length - 1])}" cy="${Y(last.v)}" r="4.5"/>
+    <text class="ch-end" x="${X(ts[ts.length - 1]) + 9}" y="${Y(last.v) + 4}">${fx(last.v, 1)}</text>
+    <line class="ch-cross" id="cx" x1="0" x2="0" y1="${T}" y2="${H - B}" visibility="hidden"/>
+    <circle class="ch-dot" id="cd" r="5" cx="0" cy="0" visibility="hidden"/>
+    <rect class="ch-hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}"/>
+  </svg><div class="tip" hidden></div>`;
+  const svg = $('svg', host), tip = $('.tip', host), cx = $('#cx', host), cd = $('#cd', host);
+  const hide = () => { tip.hidden = true; cx.setAttribute('visibility', 'hidden'); cd.setAttribute('visibility', 'hidden'); };
+  $('.ch-hit', host).addEventListener('pointermove', (e) => {
+    const r = svg.getBoundingClientRect(); const x = (e.clientX - r.left) * (W / r.width);
+    let bi = 0, bd = 1e9; ts.forEach((t, i) => { const d = Math.abs(X(t) - x); if (d < bd) { bd = d; bi = i; } });
+    const px = X(ts[bi]), py = Y(pts[bi].v);
+    cx.setAttribute('x1', px); cx.setAttribute('x2', px); cx.setAttribute('visibility', 'visible');
+    cd.setAttribute('cx', px); cd.setAttribute('cy', py); cd.setAttribute('visibility', 'visible');
+    tip.textContent = fmtD(pts[bi].t) + '  ' + fx(pts[bi].v, 1) + ' ' + unit + (pts[bi].note ? '  ' + pts[bi].note : '');
+    tip.style.left = (px * r.width / W) + 'px'; tip.style.top = (py * r.height / H) + 'px'; tip.hidden = false;
+  });
+  $('.ch-hit', host).addEventListener('pointerleave', hide);
+}
+function e1rm(w, r) { return w * (1 + r / 30); }
+function liftSeries(exId) {
+  const out = [];
+  [...S.workouts].reverse().forEach(w => {
+    const e = (w.ex || []).find(x => x.id === exId); if (!e) return;
+    let best = null, bs = null;
+    e.sets.forEach(s => { const wv = num(s.w), rv = num(s.r); if (wv > 0 && rv > 0 && rv <= 12) { const v = e1rm(wv, rv); if (!best || v > best) { best = v; bs = s; } } });
+    if (best) out.push({ t: w.date, v: best, note: '(' + bs.w + '×' + bs.r + ')' });
+  });
+  return out;
+}
+function renderProgress() {
+  const el = $('#tab-progress');
+  const ci = [...S.checkins].reverse();
+  const wts = ci.filter(c => c.weight != null).map(c => ({ t: c.date, v: c.weight }));
+  const wst = ci.filter(c => c.waist != null).map(c => ({ t: c.date, v: c.waist }));
+  const lastW = wts[wts.length - 1];
+  const ref = lastW ? [...wts].reverse().find(p => daysBetween(p.t, lastW.t) >= 25) : null;
+  const d30 = new Date(Date.now() - 30 * 864e5).toISOString().slice(0, 10);
+  const n30 = S.workouts.filter(w => w.date >= d30).length;
+  const lifts = [];
+  S.program.days.forEach(d => d.blocks.forEach(b => b.items.forEach(it => { if (it.log === 'wr' && !lifts.find(l => l.id === it.id)) lifts.push(it); })));
+  const withData = lifts.filter(l => S.workouts.some(w => (w.ex || []).some(e => e.id === l.id)));
+  const sel = S.liftSel && lifts.find(l => l.id === S.liftSel) ? S.liftSel : (withData[0] || lifts[0]).id;
+  S.liftSel = sel;
+  const withPh = ci.filter(c => (c.photos || []).length);
+  const first = withPh[0], lastP = withPh[withPh.length - 1];
+  el.innerHTML = `
+    <div class="stack" style="gap:4px"><span class="eyebrow">התקדמות</span><h2 class="h2">מה השתנה</h2></div>
+    <div class="stats">
+      <div class="stat"><b>${lastW ? fx(lastW.v) : '–'}<small>ק״ג</small></b><span>משקל אחרון${lastW ? ' · ' + fmtD(lastW.t) : ''}</span></div>
+      <div class="stat"><b>${ref ? (lastW.v - ref.v > 0 ? '+' : '') + fx(lastW.v - ref.v) : '–'}<small>ק״ג</small></b><span>שינוי בחודש האחרון · יעד +0.5 עד +1</span></div>
+      <div class="stat"><b>${n30}<small>/ 17</small></b><span>אימונים ב-30 הימים האחרונים</span></div>
+      <div class="stat"><b>${S.checkins[0] ? fmtD(S.checkins[0].date).slice(0, 5) : '–'}</b><span>צ׳ק-אין אחרון</span></div>
+    </div>
+    <div class="grid2">
+      <div class="panel stack"><h3 class="h3">משקל ממוצע <span class="muted small">ק״ג</span></h3><div class="chart" id="ch-w"></div></div>
+      <div class="panel stack"><h3 class="h3">היקף מותניים <span class="muted small">ס״מ</span></h3><div class="chart" id="ch-waist"></div></div>
+    </div>
+    <div class="panel stack">
+      <div class="duebar" style="flex-wrap:wrap"><h3 class="h3">כוח משוער (1RM)</h3>
+        <select id="lift-sel" style="width:auto;max-width:100%">${lifts.map(l => `<option value="${l.id}" ${l.id === sel ? 'selected' : ''}>${esc(l.n)}${withData.includes(l) ? '' : ' (אין נתונים)'}</option>`).join('')}</select></div>
+      <p class="muted small">מחושב מהסט הטוב ביותר בכל אימון (נוסחת Epley). עלייה איטית ויציבה זה בדיוק מה שרוצים.</p>
+      <div class="chart" id="ch-lift"></div>
+    </div>
+    <div class="panel stack"><h3 class="h3">לפני ועכשיו</h3>
+      ${first && lastP && first !== lastP ? `<div class="compare">
+        <figure><div class="imgs">${first.photos.map(id => `<img src="${photoUrl(id)}" alt="תמונה מ-${fmtD(first.date)}">`).join('')}</div><figcaption>${fmtD(first.date)}${first.weight ? ' · ' + first.weight + ' ק״ג' : ''}</figcaption></figure>
+        <figure><div class="imgs">${lastP.photos.map(id => `<img src="${photoUrl(id)}" alt="תמונה מ-${fmtD(lastP.date)}">`).join('')}</div><figcaption>${fmtD(lastP.date)}${lastP.weight ? ' · ' + lastP.weight + ' ק״ג' : ''}</figcaption></figure>
+      </div>` : '<p class="empty">ההשוואה תופיע אחרי שני צ׳ק-אינים עם תמונות.</p>'}
+    </div>`;
+  lineChart($('#ch-w'), wts, 'ק״ג');
+  lineChart($('#ch-waist'), wst, 'ס״מ');
+  lineChart($('#ch-lift'), liftSeries(sel), 'ק״ג');
+}
+
+/* ───────────── FOOD ───────────── */
+function renderFood() {
+  const n = S.program.nutrition;
+  $('#tab-food').innerHTML = `
+    <div class="phase"><span class="eyebrow">השלב הנוכחי · ${esc(n.weeks)}</span><h2 class="h2">${esc(n.phase)}</h2><p class="muted" style="max-width:64ch">${esc(n.goal)}</p></div>
+    <div class="lists3">
+      <div class="panel stack"><h3 class="h3">הבסיס</h3><ul class="clean good">${n.eat.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+      <div class="panel stack"><h3 class="h3">לבדוק בהדרגה</h3><ul class="clean warn">${n.test.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+      <div class="panel stack"><h3 class="h3">להוציא</h3><ul class="clean bad">${n.avoid.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+    </div>
+    <p class="note">אני לא רופא. זו מסגרת לעבודה משותפת עם הגסטרואנטרולוג ועם דיאטנית שמכירה מחלות מעי דלקתיות, והיא לא מחליפה טיפול תרופתי. שינוי משמעותי בתזונה או בתרופות עובר דרכם.</p>
+    <div class="stack" style="gap:4px;margin-top:6px"><span class="eyebrow">העקרונות</span><h2 class="h2">על מה זה נשען</h2></div>
+    <div class="prin">
+      <article><h3>מה המחקר תומך בו</h3>
+        <p>תזונה ים-תיכונית הביאה לשיפור בתסמינים דומה לדיאטת SCD אצל חולי קרוהן (מחקר DINE-CD, 2021), וקל יותר להתמיד בה. דיאטת CDED (Crohn's Disease Exclusion Diet) היא מסגרת מובנית שמוציאה מזון מעובד ומתחלבים, ויש לה ראיות טובות. כדאי לשאול את הגסטרו עליה, כי היא מתיישבת בדיוק עם המטרה שלך.</p></article>
+      <article><h3>למה לקרוא תוויות</h3>
+        <p>מתחלבים כמו CMC (E466) שינו את חיידקי המעי ואת שכבת הריר שמגינה עליו, גם אצל אנשים בריאים במחקר מבוקר. אותו דבר עולה במחקרים על פוליסורבט 80 וקרגינן. כלל אצבע: אם יש ברשימת הרכיבים משהו שלא היית מחזיק במטבח, זה לא נכנס.</p></article>
+      <article><h3>פליאו, קיטו ורפואה קדומה</h3>
+        <p>פליאו מתאים ברוב העקרונות: אוכל אמיתי, ציר עצמות, בשר ודגים, בלי מעובד. קיטו לא מומלץ כבסיס. מעט סיבים פוגע בייצור בוטיראט, חומצת השומן שמזינה את דופן המעי, והרבה שומן רווי מן החי נקשר בחלק מהמחקרים לדלקת. בלי פחמימות גם קשה לבנות מסה. אם רוצים לנסות, לתקופה קצרה ובליווי.</p></article>
+      <article><h3>סיבים</h3>
+        <p>סיבים מסיסים ומבושלים (בננה, שיבולת שועל, ירקות כתומים מבושלים) מזינים את החיידקים הטובים. אם יש לך היצרות במעי (סטריקטורה), צריך תזונה דלת שארית לפי הרופא. זה קודם לכל עיקרון אחר כאן.</p></article>
+      <article><h3>חלבון ומסה</h3>
+        <p>1.6–2.2 גרם חלבון לכל ק״ג משקל גוף ביום, מחולק ל-4 ארוחות של 35–50 גרם. פחמימות סביב האימון: אורז, תפוח אדמה, בננה. הארוחה הגדולה אחרי האימון. באבקות חלבון לבדוק רכיבים: איזולט נקי, חלבון בקר או ביצה, בלי סוכרלוז וגאמים. קריאטין מונוהידרט 3–5 גרם ביום בדרך כלל בטוח ויעיל. לאשר עם הרופא.</p></article>
+      <article><h3>ביו-האקינג שעובד</h3>
+        <p>שעות שינה קבועות, אור שמש בבוקר, 10 דקות הליכה אחרי ארוחות, סאונה עם מים ומלח, ו-10 דקות נשימות ביום (לחץ משפיע ישירות על המעי). בלי צומות ארוכים בתקופת מסה. עישון הוא גורם הסיכון החזק ביותר להחמרת קרוהן.</p></article>
+      <article><h3>תוספים לבדוק מול הרופא</h3>
+        <p>ויטמין D לפי הרמה בדם. B12 וברזל לפי בדיקות, כי הספיגה שלהם נפגעת כשהמעי הדק מעורב. אבץ ומגנזיום. אומגה 3 לא הוכחה כמונעת התלקחויות, אבל דגים שמנים כמזון מצוינים. לכורכומין יש ראיות מעטות, ורובן בקוליטיס ולא בקרוהן.</p></article>
+      <article><h3>איך מתאימים</h3>
+        <p>מאכל חדש אחד כל 3–4 ימים, ורושמים בצ׳ק-אין מה נוסף ואיך הגוף הגיב. אם הנפיחות או הכאב עולים בשתי נקודות, חוזרים לשלב הקודם. אחרי 4 שבועות יציבים עוברים לשלב הבא, ואני מעדכן כאן את הרשימות.</p></article>
+    </div>`;
+}
+
+/* ───────────── COACH ───────────── */
+function renderCoach() {
+  const p = S.program;
+  $('#tab-coach').innerHTML = `
+    <div class="stack" style="gap:4px"><span class="eyebrow">הלולאה</span><h2 class="h2">איך התוכנית משתפרת</h2></div>
+    <div class="grid2">
+      <div class="panel stack"><h3 class="h3">מה אתה עושה</h3>
+        <ol class="steps">
+          <li><div><b>רושם כל אימון</b><p class="muted small">משקלים, חזרות, מאמץ ואיך הבטן הרגישה.</p></div></li>
+          <li><div><b>צ׳ק-אין פעם בשבוע</b><p class="muted small">משקל ממוצע, שינה, עיכול ומצב רוח. תמונות כל 4 שבועות.</p></div></li>
+          <li><div><b>מכניס בדיקות דם</b><p class="muted small">לפי הלוח בלשונית בדיקות.</p></div></li>
+          <li><div><b>כותב לי בצ׳אט</b><p class="muted small">"תעדכן את התוכנית לפי המעקב". אני קורא את כל הנתונים, מסביר מה ראיתי ומעדכן כאן את התוכנית ואת שלב התזונה.</p></div></li>
+        </ol></div>
+      <div class="panel stack"><h3 class="h3">לפי מה אני מחליט</h3><ul class="clean a">${p.adjust.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+    </div>
+    <div class="panel stack">
+      <div class="duebar" style="flex-wrap:wrap"><h3 class="h3">סיכום להדבקה</h3><button class="btn ghost" data-act="copy">העתק סיכום</button></div>
+      <p class="muted small">אני קורא את הנתונים ישירות מהמחברת. הסיכום שימושי אם תרצה להדביק אותו בשיחה אחרת או לשלוח לרופא או לדיאטנית.</p>
+      <textarea id="summary" readonly style="min-height:120px;font-family:var(--mono);font-size:13px;direction:rtl"></textarea>
+    </div>
+    <div class="stack"><h3 class="h3">יומן שינויים</h3>
+      <div class="hist">${[...p.changelog].reverse().map(c => `<div class="hitem" style="grid-template-columns:auto 1fr"><span class="d">${fmtD(c.date)}</span><div>${esc(c.text)}</div></div>`).join('')}</div></div>`;
+  $('#summary').value = summaryText();
+}
+function summaryText() {
+  const L = [];
+  L.push('סיכום אימונים ונהנים · ' + fmtD(today()) + ' · תוכנית גרסה ' + S.program.version);
+  L.push('שלב תזונה: ' + S.program.nutrition.phase);
+  L.push('');
+  L.push('צ׳ק-אינים אחרונים:');
+  S.checkins.slice(0, 4).forEach(c => L.push(`${fmtD(c.date)} | משקל ${c.weight ?? '–'} | מותניים ${c.waist ?? '–'} | שינה ${c.sleep ?? '–'} | התאוששות ${c.recovery ?? '–'} | בריסטול ${c.bristol ?? '–'} | נפיחות ${c.bloating ?? '–'} | כאב ${c.pain ?? '–'} | מצב רוח ${c.mood ?? '–'}${c.blood ? ' | דם: כן' : ''}${c.newFoods ? ' | מאכלים: ' + c.newFoods : ''}${c.reactions ? ' | תגובה: ' + c.reactions : ''}`));
+  if (!S.checkins.length) L.push('אין עדיין');
+  L.push('');
+  L.push('אימונים אחרונים:');
+  S.workouts.slice(0, 8).forEach(w => L.push(`${fmtD(w.date)} ${w.day} | RPE ${w.rpe ?? '–'} | ${topSets(w)}${w.notes ? ' | ' + w.notes : ''}`));
+  if (!S.workouts.length) L.push('אין עדיין');
+  const lb = S.labs[0];
+  if (lb) { L.push(''); L.push('בדיקות ' + fmtD(lb.date) + ': ' + MARKERS.filter(([k]) => lb[k] != null).map(([k, n]) => n + ' ' + lb[k]).join(', ')); }
+  return L.join('\n');
+}
+
+/* ───────────── NAV + EVENTS ───────────── */
+function go(tab, push = true) {
+  if (!$('#tab-' + tab)) tab = 'program';
+  S.tab = tab;
+  $$('.tabs button').forEach(b => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
+  $$('section.tab').forEach(s => { s.hidden = s.id !== 'tab-' + tab; });
+  if (tab === 'progress') renderProgress();
+  if (tab === 'coach') renderCoach();
+  try { localStorage.setItem('atg-tab', tab); } catch (e) {}
+  if (push) window.scrollTo({ top: 0 });
+}
+function applyUI(v, save = true) {
+  const r = document.documentElement;
+  if (v === 'light' || v === 'dark') r.setAttribute('data-ui', v); else { r.removeAttribute('data-ui'); v = 'auto'; }
+  $$('[data-ui-set]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.uiSet === v)));
+  if (save) { try { localStorage.setItem('atg-ui', v); } catch (e) {} }
+}
+document.addEventListener('pointerdown', ensureAudio, { passive: true });
+document.addEventListener('click', async (e) => {
+  const t = e.target.closest('[data-tab],[data-act],[data-ui-set]'); if (!t) return;
+  if (t.dataset.uiSet) { applyUI(t.dataset.uiSet); return; }
+  if (t.dataset.tab) { go(t.dataset.tab); return; }
+  const a = t.dataset.act, id = t.dataset.id;
+  if (a === 'day') { S.dayView = id; renderProgram(); }
+  else if (a === 'logthis') { S.logDay = id; S.logDate = today(); S.dirty.log = false; renderLogForm(); go('log'); }
+  else if (a === 't-start' || a === 'pt-start') { startTimer(+t.dataset.s); }
+  else if (a === 't-stop' || a === 'pt-stop') { stopTimer(); }
+  else if (a === 'savelog') { t.disabled = true; await saveLog(); t.disabled = false; }
+  else if (a === 'editlog') { const w = S.workouts.find(x => x.id === id); if (w) { S.logDay = w.day; S.logDate = w.date; S.dirty.log = false; renderLogForm(); window.scrollTo({ top: 0 }); } }
+  else if (a === 'saveci') { t.disabled = true; await saveCi(); t.disabled = false; }
+  else if (a === 'editci') { S.ciDate = id; S.dirty.ci = false; renderCiForm(); window.scrollTo({ top: 0 }); }
+  else if (a === 'savelab') { t.disabled = true; await saveLab(); t.disabled = false; }
+  else if (a === 'editlab') { S.labDate = id; S.dirty.lab = false; renderLabForm(); $('#lab-form').scrollIntoView({ block: 'start' }); }
+  else if (a === 'rmphoto') {
+    if (S.ciNewPhotos.includes(id)) { S.ciNewPhotos = S.ciNewPhotos.filter(x => x !== id); if (S.assets) S.assets.delete(id).catch(() => {}); }
+    else S.ciPhotos = S.ciPhotos.filter(x => x !== id);
+    S.dirty.ci = true; drawCiPhotos();
+  }
+  else if (a === 'del') {
+    const key = t.dataset.col + '/' + id;
+    if (S.armed !== key) { S.armed = key; renderLogHist(); clearTimeout(S._arm); S._arm = setTimeout(() => { S.armed = null; renderLogHist(); }, 4000); return; }
+    S.armed = null;
+    try { await S.db.doc(key).delete(); toast('נמחק'); } catch (err) { toast('המחיקה נכשלה'); }
+  }
+  else if (a === 'copy') {
+    const txt = $('#summary').value;
+    try { await navigator.clipboard.writeText(txt); toast('הסיכום הועתק'); } catch (err) { $('#summary').select(); toast('סמן והעתק ידנית'); }
+  }
+});
+document.addEventListener('input', (e) => {
+  const id = e.target.id || e.target.name || '';
+  if (id.startsWith('lg-') && id !== 'lg-date' && id !== 'lg-day') {
+    S.dirty.log = true;
+    if (/-[wr]$/.test(id)) { clearTimeout(S._rest); const v = e.target.value; S._rest = setTimeout(() => autoRest(id, v), 1200); }
+    if (S.db) { clearTimeout(S._auto); const st = $('#autosave'); if (st) st.textContent = 'שומר…'; S._auto = setTimeout(() => saveLog(true), 2500); }
+  }
+  if (id.startsWith('ci-')) S.dirty.ci = true;
+  if (id.startsWith('lb-')) S.dirty.lab = true;
+  if (e.target.id === 'ci-blood') $('#ci-blood-alert').hidden = !e.target.checked;
+});
+document.addEventListener('change', (e) => {
+  const id = e.target.id;
+  if (id === 'lg-day' || id === 'lg-date') { clearTimeout(S._auto); S.logDay = $('#lg-day').value; S.logDate = $('#lg-date').value || today(); S.dirty.log = false; renderLogForm(); }
+  else if (id === 'ci-date') { S.ciDate = e.target.value || today(); S.dirty.ci = false; renderCiForm(); }
+  else if (id === 'lb-date') { S.labDate = e.target.value || today(); S.dirty.lab = false; renderLabForm(); }
+  else if (id === 'ci-file') { const files = [...e.target.files]; e.target.value = ''; if (files.length && S.assets) uploadPhotos(files); }
+  else if (/^lg-.+-(load|uni)-/.test(id)) {
+    const exId = e.target.name.replace(/^lg-/, '').replace(/-(load|uni)$/, ''); const it = findItem(exId);
+    const h = document.getElementById('lg-' + exId + '-hint');
+    if (it && h) h.textContent = hintText(it, radioStr('lg-' + exId + '-load') === 'bw', radioStr('lg-' + exId + '-uni') === '1');
+  }
+  else if (id === 'lift-sel') { S.liftSel = e.target.value; renderProgress(); }
+});
+let rz; window.addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { if (S.tab === 'progress') renderProgress(); }, 150); });
+
+function renderAll() {
+  renderProgram(); renderLogHist(); renderCiHist(); renderLabSched(); renderLabHist(); renderFood();
+  if (!S.dirty.log) renderLogForm(); if (!S.dirty.ci) renderCiForm(); if (!S.dirty.lab) renderLabForm();
+  if (S.tab === 'progress') renderProgress(); if (S.tab === 'coach') renderCoach();
+}
+function setSync(state) {
+  const el = $('#sync'); el.className = 'sync ' + (state === 'on' ? 'on' : state === 'off' ? 'off' : '');
+  $('span', el).textContent = state === 'on' ? 'נשמר בענן' : state === 'off' ? 'תצוגה בלבד' : 'מתחבר…';
+}
+
+/* ───────────── V5: A/B/C רוטציה חופשית ───────────── */
+(function patchV5() {
+  const P = DEFAULT_PROGRAM;
+  P.version = 6;
+  P.updatedAt = "2026-09-29";
+  P.cycle = "רוטציה חופשית A → B → C. מתקדמים לאימון הבא רק אחרי שרשמתם את הנוכחי.";
+  P.rotation = ["A", "B", "C"];
+  P.week = [];
+  P.warmup.C = P.warmup.A.slice(0, 2).concat(P.warmup.B.slice(0, 2));
+  P.skills = {
+    title: "סקילים ומוביליטי",
+    note: "2–4 תרגילים בתחילת או בסוף כל אימון",
+    items: [
+      {"id":"s_nordic","n":"Nordic curl","sr":"3×3–5","c":["עקבים מקובעים, ברכיים על כרית","גוף ישר, ירידה איטית 4–5 שניות","בהתחלה: גומייה או ירידה חלקית"],"x":"להתכופף במותניים","v":"https://www.youtube.com/shorts/n7jvtdMJJ4w","rest":"2–3 דק׳","log":"r","m":{"hams":1},"bw":true},
+      {"id":"s_mu","n":"Muscle-up progression","sr":"4–5 סטים","c":["שלב 1: Chest-to-bar מתפרצים 4×5","שלב 2: Straight bar dips 3×8 + שליליות 3×3","שלב 3: עם גומייה, ואז 5×1–3 נקי"],"x":"לנסות מלא לפני שיש בסיס","v":"https://www.youtube.com/watch?v=-b1TB7edF2E","rest":"2–3 דק׳","log":"r","m":{"lats":0.5},"bw":true},
+      {"id":"s_lsit","n":"L-sit","sr":"3×10–20 שנ׳","c":["על מקבילים או שני כיסאות","כתפיים למטה, ידיים נעולות","רגליים ישרות. בהתחלה ברך כפופה"],"x":"כתפיים שעולות לאוזניים","v":"https://www.youtube.com/watch?v=H_iZG5-L_KI","rest":"60 שנ׳","log":"t","m":{"core":1},"bw":true},
+      {"id":"s_hs","n":"Wall handstand hold","sr":"3×20–40 שנ׳","c":["בטן צמודה לקיר, ידיים ברוחב כתפיים","דוחף את הרצפה, גוף ישר","בטן וישבן מכווצים"],"x":"גב מקושת כמו בננה","v":"https://www.youtube.com/watch?v=nuuvRjGpNKA","rest":"90 שנ׳","log":"t","m":{"fdelt":0.5,"core":0.5},"bw":true},
+      {"id":"sk_calf","n":"Standing calf raise","sr":"3×12","c":["כרית כף הרגל על קצה המדרגה","ירידה עד מתיחה מלאה, עצירה 2 שנ׳","עלייה עד הסוף על הבהונות"],"x":"קפיצות קצרות בלי טווח","v":"https://www.youtube.com/watch?v=SVtg-1loH4c","rest":"60 שנ׳","log":"wr","m":{"calves":1}},
+      {"id":"sk_poliquin","n":"Poliquin step-up","sr":"2×15 לרגל","c":["עקב על פלטה, מדרגה נמוכה","יורד לאט עד שהעקב נוגע ברצפה","הברך נוסעת קדימה מעל האצבעות"],"x":"לדחוף עם הרגל שעל הרצפה","v":"https://www.youtube.com/watch?v=WPQnPm-Hl-w","rest":"90 שנ׳","log":"wr","m":{"quads":1},"bw":true,"uni":true},
+      {"id":"sk_tib","n":"Tibialis raise","sr":"3×20","c":["גב לקיר או ישיבה על ספסל","מרים אצבעות עד הסוף","ירידה איטית ומבוקרת"],"x":"תנופה או חצי טווח","v":"https://www.youtube.com/watch?v=jJoeXumQUNU","rest":"60 שנ׳","log":"wr","m":{"tibs":1}},
+      {"id":"sk_hang","n":"Dead hang (תלייה סטטית)","sr":"2×30–60 שנ׳","c":["אחיזה ברוחב כתפיים, גוף רפוי","כתפיים עולות לאוזניים","נושם לאט ועמוק"],"x":"להחזיק בכוח עם כתפיים משוכות","v":"https://www.youtube.com/watch?v=g0I7Jv3oqKw","rest":"60 שנ׳","log":"t","m":{"grip":0.5},"bw":true},
+      {"id":"sk_atgsplit","n":"ATG split squat","sr":"2×8 לרגל","c":["משקולות או משקל גוף, צעד ארוך","ברך קדמית עוברת אצבעות, עקב צמוד","מתיחה בכופף הירך האחורי"],"x":"לקצר טווח כדי להרים יותר","v":"https://www.youtube.com/shorts/9I06taRrGyI","rest":"90 שנ׳","log":"wr","m":{"quads":0.5,"glutes":0.5},"uni":true,"per":"db","bw":true}
+    ]
+  };
+  P.days = [
+    {"id":"A","type":"A","title":"פלג עליון + סקוואט","sub":"חזה, כתפיים, זרועות וסקוואט","dur":"~60 דק׳","blocks":[
+      {"t":"תרגילים","items":[
+        {"id":"squat","n":"Back squat","sr":"4×12","c":["עם או בלי פלאטה מתחת לעקבים","מבט למעלה, ברכיים יוצאות קצת כמו עמידת ברווז — לא רחב מדי","ירידה עמוקה בשליטה ודחיפה של הרצפה"],"x":"עקבים שמתרוממים או גב תחתון שמתעגל","v":"https://www.youtube.com/watch?v=bEv6CCg2BC8","rest":"2–3 דק׳","log":"wr","m":{"quads":1,"glutes":0.5}},
+        {"id":"incpress_lo","n":"DB incline press (שיפוע נמוך)","sr":"3×12–15","c":["השיפוע הכי נמוך שיש — קליק אחד למעלה מאפס (כ-15°)","שכמות מאחור ולמטה, מרפקים בכ-45°","ירידה עמוקה עד מתיחה בחזה, דחיפה למעלה ומעט פנימה"],"x":"מרפקים ב-90° או שכמות שמשתחררות","v":"https://www.youtube.com/watch?v=3oVPMAuA56Y","vt":"שיפוע נמוך ~15°","rest":"90 שנ׳","log":"wr","m":{"chest":1,"fdelt":0.5,"triceps":0.5},"per":"db"},
+        {"id":"incpress_hi","n":"DB incline press (שיפוע גבוה)","sr":"3×12–15","c":["השיפוע הכי גבוה — קליק אחד למטה מזקוף (כ-60°)","מטרגט חזה עליון וכתפיים","שכמות מאחור, מרפקים 45°, ירידה מלאה"],"x":"לקשת את הגב התחתון","v":"https://www.youtube.com/watch?v=R0-ODlDtnnw","vt":"שיפוע גבוה ~60°","rest":"90 שנ׳","log":"wr","m":{"chest":0.5,"fdelt":1,"triceps":0.5},"per":"db"},
+        {"id":"uprow","n":"Upright row","sr":"3×9–12","c":["אחיזה ברוחב כתפיים או מעט צרה","מרים לכתפיים ואז מרים מרפקים לשנייה — עובד גם על הטרפזים","ירידה איטית ומבוקרת"],"x":"משקל כבד מדי שגורם לתנופת גוף","v":"https://www.youtube.com/watch?v=amCU-ziHITM","rest":"90 שנ׳","log":"wr","m":{"sdelt":1,"upper":0.5}},
+        {"id":"pecfly","n":"Pec fly (מכונה / כבלים)","sr":"3×9–12","c":["חשוב: תמיכה לגב! במכונה או כבלים עם ספסל","מתיחה מלאה הצידה וסגירה עד מגע הידיים","לחוש את המתיחה בחזה"],"x":"להרים כתפיים או לעגל את הגב","v":"https://www.youtube.com/watch?v=Z57CtFmRMxA","rest":"90 שנ׳","log":"wr","m":{"chest":1}},
+        {"id":"legext","n":"Leg extension (מכונה)","sr":"3×9–12","c":["ציר המכונה מיושר עם הברך","פשיטה מלאה עד נעילה קלה","ירידה איטית ומבוקרת"],"x":"לזרוק את המשקל בתנופה","v":"https://www.youtube.com/watch?v=ljO4jkwv8wQ","rest":"90 שנ׳","log":"wr","m":{"quads":1}}
+      ]},
+      {"t":"רשות","items":[
+        {"id":"abs_a","n":"בטן עם משקל (בחרו אחד)","sr":"3×12–15","opt":true,"opts":[
+          {"n":"Cable crunch","v":"https://www.youtube.com/watch?v=AV5PmZJIrrw","c":"על הברכיים ליד הגלגלת, כפיפה מהצלעות לאגן"},
+          {"n":"Hanging leg raise","v":"https://www.youtube.com/watch?v=vwl68EF9M2Q","c":"תלייה, הרמת רגליים עם גלגול אגן למעלה"},
+          {"n":"Weighted Russian twist","v":"https://www.youtube.com/watch?v=wkD8rjkodUI","c":"ישיבה עם משקל, סיבוב מצד לצד"},
+          {"n":"Decline weighted sit-up","v":"https://www.youtube.com/watch?v=qZaMPggxdhg","c":"ספסל משופע, פלטה או כדור על החזה"},
+          {"n":"Pallof press","v":"https://www.youtube.com/watch?v=AH_QZLm_0-s","c":"כבל בגובה החזה, דחיפה קדימה ללא סיבוב"},
+          {"n":"Ab wheel rollout","v":"https://www.youtube.com/watch?v=PK4n7qJpOhM","c":"מהברכיים, גלגול קדימה, חזרה עם הבטן"}
+        ],"x":"למשוך עם הידיים במקום הבטן","rest":"60 שנ׳","log":"wr","m":{"core":1}},
+        {"id":"tri_a","n":"יד אחורית (בחרו אחד)","sr":"3×9–12","opt":true,"opts":[
+          {"n":"Overhead tricep extension","v":"https://www.youtube.com/watch?v=8WC7rIOkhi0","c":"כבל מאחורי הראש, מרפקים ליד הראש"},
+          {"n":"Tricep pushdown","v":"https://www.youtube.com/shorts/v2fMq8RjNBw","c":"מרפקים צמודים לגוף, נעילה מלאה למטה"},
+          {"n":"Skull crusher","v":"https://www.youtube.com/watch?v=d_KZxkY_0cM","c":"שכיבה, מוט/משקולות יורדים למצח, פשיטה למעלה"},
+          {"n":"Close-grip bench press","v":"https://www.youtube.com/watch?v=cXbSJHtjrQQ","c":"אחיזה צרה מהכתפיים, מרפקים צמודים"}
+        ],"x":"מרפקים שזזים מהמקום","rest":"60 שנ׳","log":"wr","m":{"triceps":1}}
+      ]}
+    ]},
+    {"id":"B","type":"B","title":"רגליים + משיכה","sub":"ירך אחורית, גב ומעט זרועות","dur":"~60 דק׳","blocks":[
+      {"t":"תרגילים","items":[
+        {"id":"rdl","n":"Romanian deadlift","sr":"4×12","c":["מוט או משקולות בודדות — מה שנוח","ברכיים רכות באותה זווית, ירכיים אחורה","עוצרים כשהירך האחורית נמתחת, משקל צמוד"],"x":"לעגל את הגב כדי להגיע נמוך יותר","v":"https://www.youtube.com/watch?v=_oyxCn2iSjU","rest":"2 דק׳","log":"wr","m":{"hams":1,"glutes":0.5}},
+        {"id":"revfly","n":"Machine reverse fly","sr":"3×9–12","c":["ישיבה פנים אל המכונה, חזה צמוד","ידיים ישרות או כפופות, מוביל עם גב היד","עצירה קצרה עם שכמות סחוטות"],"x":"למשוך עם גב תחתון","v":"https://www.youtube.com/shorts/LsT-bR_zxLo","rest":"90 שנ׳","log":"wr","m":{"rdelt":1,"upper":0.5}},
+        {"id":"pulldown","n":"Lat pulldown","sr":"3×12–15","c":["אחיזה רגילה ברוחב כתפיים או מעט רחבה","מתיחה מלאה למעלה, מרפקים לכיסים","המוט לחזה העליון"],"x":"להישען אחורה ולמשוך עם תנופה","v":"https://www.youtube.com/shorts/SqQxuEpXnF4","rest":"90 שנ׳","log":"wr","m":{"lats":1,"biceps":0.5}},
+        {"id":"bbrow","n":"Bent over row","sr":"3×9–12","c":["גב כמעט מקביל לרצפה, ברכיים רכות","מושך לבטן התחתונה, מרפקים צמודים","בלי תנופה של הגוף"],"x":"להתיישר בכל חזרה","v":"https://www.youtube.com/watch?v=FWJR5Ve8bnQ","rest":"90 שנ׳","log":"wr","m":{"upper":1,"lats":0.5,"biceps":0.5}},
+        {"id":"legcurl","n":"Seated leg curl","sr":"3×9–12","c":["הברך מיושרת עם ציר המכונה","גב צמוד, נטייה קלה קדימה","כפיפה עד הסוף ושחרור לאט"],"x":"להקפיץ את המשקל","v":"https://www.youtube.com/shorts/aakNLjjm4Qo","rest":"90 שנ׳","log":"wr","m":{"hams":1}},
+        {"id":"backext","n":"Back extension (כסא רומי)","sr":"3×9–12","c":["כמו סופרמן — פשיטה מהירכיים, גב ניטרלי","בלי משקל: ידיים מאחורי הראש","עם משקל: להתחיל ב-2.5 ק״ג על החזה"],"x":"לקשת את הגב מעבר לקו ישר","v":"https://www.youtube.com/watch?v=KA2AuDQipSQ","rest":"90 שנ׳","log":"wr","m":{"hams":0.5,"glutes":1},"bw":true}
+      ]},
+      {"t":"רשות","items":[
+        {"id":"abs_b","n":"בטן עם משקל (בחרו אחד)","sr":"3×12–15","opt":true,"opts":[
+          {"n":"Cable crunch","v":"https://www.youtube.com/watch?v=AV5PmZJIrrw","c":"על הברכיים ליד הגלגלת, כפיפה מהצלעות לאגן"},
+          {"n":"Hanging leg raise","v":"https://www.youtube.com/watch?v=vwl68EF9M2Q","c":"תלייה, הרמת רגליים עם גלגול אגן למעלה"},
+          {"n":"Weighted Russian twist","v":"https://www.youtube.com/watch?v=wkD8rjkodUI","c":"ישיבה עם משקל, סיבוב מצד לצד"},
+          {"n":"Decline weighted sit-up","v":"https://www.youtube.com/watch?v=qZaMPggxdhg","c":"ספסל משופע, פלטה או כדור על החזה"},
+          {"n":"Pallof press","v":"https://www.youtube.com/watch?v=AH_QZLm_0-s","c":"כבל בגובה החזה, דחיפה קדימה ללא סיבוב"},
+          {"n":"Ab wheel rollout","v":"https://www.youtube.com/watch?v=PK4n7qJpOhM","c":"מהברכיים, גלגול קדימה, חזרה עם הבטן"}
+        ],"x":"למשוך עם הידיים","rest":"60 שנ׳","log":"wr","m":{"core":1}},
+        {"id":"curl_b","n":"יד קדמית (בחרו אחד)","sr":"3×9–12","opt":true,"opts":[
+          {"n":"Incline DB curl","v":"https://www.youtube.com/watch?v=DCe8f6vMe9A","c":"ספסל 45°, זרועות תלויות, כפיפה מלאה"},
+          {"n":"Hammer curl","v":"https://www.youtube.com/shorts/NyW2fT2gQhM","c":"אגודל למעלה, מרפקים קבועים, ירידה איטית"},
+          {"n":"Barbell curl","v":"https://www.youtube.com/watch?v=QZEqB6wUPxQ","c":"אחיזה ברוחב כתפיים, מרפקים קבועים"},
+          {"n":"Cable curl","v":"https://www.youtube.com/watch?v=NFzTWp2qpiE","c":"כבל תחתון, מתח קבוע לאורך כל הטווח"},
+          {"n":"Preacher curl","v":"https://www.youtube.com/watch?v=e7X6G07KnPI","c":"זרועות על הכרית, כפיפה מלאה, ירידה מבוקרת"}
+        ],"x":"תנופה מהגב","rest":"60 שנ׳","log":"wr","m":{"biceps":1}}
+      ]}
+    ]},
+    {"id":"C","type":"C","title":"פול-בודי","sub":"רגליים, חזה, גב וכתפיים","dur":"~65 דק׳","blocks":[
+      {"t":"תרגילים","items":[
+        {"id":"squat_c","n":"Back squat","sr":"3×12","c":["אותם דגשים כמו באימון A","מבט למעלה, ברכיים כמו ברווז — לא רחב מדי","ירידה עמוקה בשליטה"],"x":"עקבים שמתרוממים או גב שמתעגל","v":"https://www.youtube.com/watch?v=bEv6CCg2BC8","rest":"2 דק׳","log":"wr","m":{"quads":1,"glutes":0.5}},
+        {"id":"rdl_c","n":"Romanian deadlift","sr":"3×12","c":["אותם דגשים כמו באימון B","ברכיים רכות, ירכיים אחורה, משקל צמוד"],"x":"לעגל את הגב","v":"https://www.youtube.com/watch?v=_oyxCn2iSjU","rest":"2 דק׳","log":"wr","m":{"hams":1,"glutes":0.5}},
+        {"id":"legext_c","n":"Leg extension (מכונה)","sr":"3×9–12","c":["פשיטת רגל קדמית","ציר מיושר עם הברך, פשיטה מלאה"],"x":"לזרוק את המשקל בתנופה","v":"https://www.youtube.com/watch?v=ljO4jkwv8wQ","rest":"90 שנ׳","log":"wr","m":{"quads":1}},
+        {"id":"legcurl_c","n":"Seated leg curl","sr":"3×9–12","c":["כפיפת רגל אחורית","ציר מיושר עם הברך, כפיפה מלאה"],"x":"להקפיץ את המשקל","v":"https://www.youtube.com/shorts/aakNLjjm4Qo","rest":"90 שנ׳","log":"wr","m":{"hams":1}},
+        {"id":"incpress_c","n":"DB incline press","sr":"3×12–15","c":["שיפוע נמוך — קליק אחד למעלה, לחזה כללי","שכמות מאחור, מרפקים בכ-45°","ירידה עמוקה ודחיפה למעלה"],"x":"לפתוח מרפקים ל-90°","v":"https://www.youtube.com/watch?v=IP4oeKh1Sd4","rest":"90 שנ׳","log":"wr","m":{"chest":1,"fdelt":0.5,"triceps":0.5},"per":"db"},
+        {"id":"pulldown_c","n":"Lat pulldown","sr":"3×12–15","c":["אחיזה רגילה, מתיחה מלאה למעלה","מרפקים לכיסים, המוט לחזה העליון"],"x":"להישען אחורה","v":"https://www.youtube.com/shorts/SqQxuEpXnF4","rest":"90 שנ׳","log":"wr","m":{"lats":1,"biceps":0.5}},
+        {"id":"shpress","n":"Seated shoulder press","sr":"3×12–15","c":["ספסל כמעט זקוף, גב צמוד למשענת","מרפקים מעט קדימה מהגוף","ירידה עד האוזניים ודחיפה למעלה"],"x":"קשת גדולה בגב התחתון","v":"https://www.youtube.com/shorts/2D0TyoHv_EY","rest":"90 שנ׳","log":"wr","m":{"fdelt":1,"sdelt":0.5,"triceps":0.5},"per":"db"}
+      ]}
+    ]}
+  ];
+  P.targets = [
+    {"k":"quads","n":"ארבע ראשי","lo":8,"hi":18,"g":"legs"},{"k":"hams","n":"ירך אחורית","lo":8,"hi":16,"g":"legs"},
+    {"k":"glutes","n":"ישבן","lo":6,"hi":14,"g":"legs"},{"k":"hips","n":"מקרבים ומרחיקים","lo":2,"hi":8,"g":"legs"},
+    {"k":"calves","n":"תאומים","lo":3,"hi":8,"g":"legs"},{"k":"tibs","n":"שוק קדמית","lo":3,"hi":8,"g":"legs"},
+    {"k":"chest","n":"חזה","lo":8,"hi":16,"g":"upper"},{"k":"lats","n":"רחב גבי","lo":6,"hi":14,"g":"upper"},
+    {"k":"upper","n":"גב עליון","lo":6,"hi":14,"g":"upper"},{"k":"fdelt","n":"כתף קדמית","lo":4,"hi":12,"g":"upper"},
+    {"k":"sdelt","n":"כתף צדדית","lo":4,"hi":12,"g":"upper"},{"k":"rdelt","n":"כתף אחורית","lo":3,"hi":10,"g":"upper"},
+    {"k":"biceps","n":"יד קדמית","lo":4,"hi":12,"g":"upper"},{"k":"triceps","n":"יד אחורית","lo":4,"hi":12,"g":"upper"},
+    {"k":"core","n":"ליבה","lo":4,"hi":14,"g":"core"},{"k":"grip","n":"אחיזה","lo":2,"hi":6,"g":"core"}
+  ];
+  P.changelog.push({"date":"2026-09-29","text":"גרסה 5: תכנית A/B/C ברוטציה חופשית. A = פלג עליון + סקוואט, B = רגליים + משיכה, C = פול-בודי. תרגילי רשות (בטן וזרועות) מתחלפים כל אימון. סקילים ומוביליטי זמינים בכל אימון."});
+  P.changelog.push({"date":"2026-09-29","text":"גרסה 6: תרגילי רשות מציגים את כל האפשרויות עם סרטוני הדגמה, ומציעים תרגיל שונה כל יום. DB incline press: סרטונים נפרדים לשיפוע נמוך (~15°) וגבוה (~60°). נוסף טיימר מנוחה בלשונית התוכנית."});
+})();
+
+/* ───────────── BOOT ───────────── */
+(function initUI() { let v = 'auto'; try { v = localStorage.getItem('atg-ui') || 'auto'; } catch (e) {} applyUI(v, false); })();
+renderAll();
+(function initTab() {
+  let t = (location.hash || '').slice(1);
+  if (!t) { try { t = localStorage.getItem('atg-tab') || ''; } catch (e) {} }
+  go(t || 'program', false);
+})();
+
+(async function connect() {
+  const C = window.claude;
+  if (!C || !C.use) { setSync('off'); return; }
+  let db = null;
+  try { db = await C.use('db'); } catch (e) { db = null; }
+  if (!db) { setSync('off'); renderAll(); return; }
+  S.db = db; setSync('on');
+  try { S.assets = await C.use('assets'); } catch (e) { S.assets = null; }
+  const docsOf = (snap) => snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  const onErr = (e) => { if (e && e.code === 'revoked') { S.db = null; setSync('off'); } };
+  db.doc('program/current').onSnapshot(s => {
+    if (s.exists) {
+      const d = s.data(); if (d && Array.isArray(d.days) && d.days.length && (d.version || 0) >= (DEFAULT_PROGRAM.version || 0)) S.program = d;
+      renderProgram(); renderFood(); renderLabSched();
+      if (!S.dirty.log) renderLogForm();
+      if (S.tab === 'coach') renderCoach();
+      if (S.tab === 'progress') renderProgress();
+    }
+  }, onErr);
+  db.collection('workouts').orderBy('date', 'desc').limit(400).onSnapshot(snap => {
+    S.workouts = docsOf(snap).sort((a, b) => (b.date + (b.savedAt || '')).localeCompare(a.date + (a.savedAt || '')));
+    renderProgram(); renderLogHist(); if (!S.dirty.log) renderLogForm();
+    if (S.tab === 'progress') renderProgress(); if (S.tab === 'coach') renderCoach();
+  }, onErr);
+  db.collection('checkins').orderBy('date', 'desc').limit(300).onSnapshot(snap => {
+    S.checkins = docsOf(snap); renderCiHist(); if (!S.dirty.ci) renderCiForm();
+    if (S.tab === 'progress') renderProgress(); if (S.tab === 'coach') renderCoach();
+  }, onErr);
+  db.collection('reviews').limit(200).onSnapshot(snap => {
+    S.reviews = docsOf(snap); renderLogHist(); if (!S.dirty.log) renderLogForm();
+  }, onErr);
+  db.collection('labs').orderBy('date', 'desc').limit(200).onSnapshot(snap => {
+    S.labs = docsOf(snap); renderLabHist(); renderLabSched(); if (!S.dirty.lab) renderLabForm();
+    if (S.tab === 'coach') renderCoach();
+  }, onErr);
+  renderAll();
+})();
+</script>
+
+</body></html>
