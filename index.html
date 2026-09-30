@@ -361,6 +361,20 @@ td.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
   <div class="toast" id="toast" hidden></div>
 </div>
 
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+try {
+  firebase.initializeApp({
+    apiKey: "AIzaSyDg3mMAr0d9TnPLSEpDbO9knh3p87eI6_k",
+    authDomain: "db-workout-d6dc5.firebaseapp.com",
+    projectId: "db-workout-d6dc5",
+    storageBucket: "db-workout-d6dc5.firebasestorage.app",
+    messagingSenderId: "340613880112",
+    appId: "1:340613880112:web:fdede1da7bbdd23ea410f5"
+  });
+} catch (e) {}
+</script>
 <script>
 document.documentElement.lang = 'he';
 document.documentElement.dir = 'rtl';
@@ -1325,12 +1339,16 @@ renderAll();
 
 (async function connect() {
   const C = window.claude;
-  if (!C || !C.use) { setSync('off'); return; }
   let db = null;
-  try { db = await C.use('db'); } catch (e) { db = null; }
+  if (C && C.use) {
+    try { db = await C.use('db'); } catch (e) { db = null; }
+    if (db) { S.assets = null; try { S.assets = await C.use('assets'); } catch (e) {} }
+  }
+  if (!db) {
+    try { if (window.firebase && firebase.apps && firebase.apps.length) db = firebase.firestore(); } catch (e) { db = null; }
+  }
   if (!db) { setSync('off'); renderAll(); return; }
   S.db = db; setSync('on');
-  try { S.assets = await C.use('assets'); } catch (e) { S.assets = null; }
   const docsOf = (snap) => snap.docs.map(d => ({ id: d.id, ...d.data() }));
   const onErr = (e) => { if (e && e.code === 'revoked') { S.db = null; setSync('off'); } };
   db.doc('program/current').onSnapshot(s => {
